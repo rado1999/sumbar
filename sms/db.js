@@ -5,14 +5,8 @@ const pool = new pg.Pool({
 })
 
 export async function savePassword(phone, password) {
-    // const result = await pool.query(
-    //     'SELECT * FROM password WHERE phone = $1', [phone]
-    // )
-    
-    // if (result.rows[0]) return false
-
     await pool.query(
-        'INSERT INTO "password" "Password" (phone, password) VALUES ($1, $2)',
+        'INSERT INTO password (phone, password) VALUES ($1, $2)',
         [phone, password]
     )
     
@@ -21,7 +15,7 @@ export async function savePassword(phone, password) {
 
 export async function confirmPassword(phone, pass) {
     const result = await pool.query(
-        'SELECT * FROM "password" "Password" WHERE phone = $1', [phone]
+        'SELECT * FROM password WHERE phone = $1', [phone]
     )
 
     if (!result.rows[0]) return false
@@ -31,7 +25,7 @@ export async function confirmPassword(phone, pass) {
     if (password !== pass) return false
 
     await pool.query(
-        'DELETE FROM "password" "Password" WHERE phone = $1', [phone]
+        'DELETE FROM password WHERE phone = $1', [phone]
     )
 
     return true
@@ -45,7 +39,5 @@ export async function checkUser(phone) {
 
     if (!result.rows[0]) return false
 
-    const { id, ...others } = result.rows[0]
-
-    return id
+    return result.rows[0]
 }

@@ -48,7 +48,7 @@ app.post('/confirm', async (req, res) => {
     
     if (!result_) return res.sendStatus(200)
     
-    return res.status(200).send({ id: result_ })
+    return res.status(200).send(result_)
 })
 
 app.listen(3001, 'localhost')
