@@ -1,0 +1,19 @@
+copy category (id, title, "imageUrl")
+from '/home/dova/Документы/category.csv'
+with csv;
+
+copy sub_category (id, title, "imageUrl", "categoryId")
+from '/home/dova/Документы/sub_category.csv'
+with csv;
+
+copy product (id, "imageUrl", title, company, "companyImage", model, "mainDescription", price, "categoryId", "subCategoryId")
+from '/home/dova/Документы/products.csv'
+with csv;
+
+copy all_specifications (id, specification, "productId")
+from '/home/dova/Документы/all_specifications.csv'
+csv delimiter ',' quote '"' escape '\';
+
+copy description (id, "desc", "productId")
+from '/home/dova/Документы/descriptions.csv'
+with csv;
