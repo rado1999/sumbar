@@ -1,6 +1,6 @@
 import { Category } from 'src/menu/entities/category.entity'
 import { SubCategory } from 'src/menu/entities/subCategory.entity'
-import { Likes } from 'src/other/entities/likes.entity'
+import { ProductLikes } from 'src/other/entities/likes.entity'
 import {
     AllSpecifications
 } from 'src/product/entities/all_specifications.entity'
@@ -65,6 +65,6 @@ export class Product {
     @OneToMany(() => Review, review => review.product)
     reviews: Review[]
 
-    @OneToMany(() => Likes, likes => likes.product)
-    likes: Likes
+    @OneToMany(() => ProductLikes, productLikes => productLikes.product)
+    productLikes: ProductLikes
 }

@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { LikesDto } from './dto/likes.dto'
 import { UserDto } from './dto/user.dto'
-import { Likes } from './entities/likes.entity'
+import { ProductLikes } from './entities/likes.entity'
 import { User } from './entities/user.entity'
 import { config } from 'dotenv'
 import { Request } from 'express'
@@ -16,8 +16,8 @@ export class OtherService {
     constructor(
         @InjectRepository(User)
         private readonly userRepo: Repository<User>,
-        @InjectRepository(Likes)
-        private readonly likesRepo: Repository<Likes>,
+        @InjectRepository(ProductLikes)
+        private readonly likesRepo: Repository<ProductLikes>,
         private readonly jwtService: JwtService
     ) { }
 
@@ -49,13 +49,13 @@ export class OtherService {
         return
     }
 
-    async getLikes(): Promise<Likes[]> {
+    async getLikes(): Promise<ProductLikes[]> {
         return await this.likesRepo.find({
             relations: ['user', 'product']
         })
     }
 
-    async getLike(id: number): Promise<Likes> {
+    async getLike(id: number): Promise<ProductLikes> {
         const result = await this.likesRepo.findOne({
             where: { product: { id: id } },
             relations: ['user', 'product']

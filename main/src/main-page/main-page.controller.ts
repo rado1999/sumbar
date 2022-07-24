@@ -25,4 +25,14 @@ export class MainPageController {
     async getSmallImages(): Promise<Product[]> {
         return await this.mainPageService.getSmallImages()
     }
+
+    @Get('new')
+    async getNewProducts(): Promise<Product[]> {
+        return await this.mainPageService.getNewProducts()
+    }
+
+    @Get('popular')
+    async getPopularProducts(): Promise<Product[]> {
+        return await this.mainPageService.getPopularProducts()
+    }
 }
