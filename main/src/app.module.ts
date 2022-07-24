@@ -6,6 +6,7 @@ import { OtherModule } from './other/other.module'
 import { AuthModule } from './auth/auth.module'
 import { MenuModule } from './menu/menu.module'
 import { SiteReviewsModule } from './site-reviews/site-reviews.module'
+import { ReportModule } from './report/report.module';
 
 config()
 
@@ -28,7 +29,8 @@ config()
         OtherModule,
         AuthModule,
         MenuModule,
-        SiteReviewsModule
+        SiteReviewsModule,
+        ReportModule
     ]
 })
 export class AppModule { }
