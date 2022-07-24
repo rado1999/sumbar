@@ -6,7 +6,6 @@ import { Options } from './dto/options.dto'
 import { Result } from './dto/result.dto'
 import { ProductCreateDto, WhichProductDto } from './dto/product.dto'
 import { ReviewDto } from './dto/review.dto'
-import { Category } from './entities/category.entity'
 import { Product } from './entities/product.entity'
 import { Review } from './entities/review.entity'
 import { ProductService } from './product.service'
@@ -25,11 +24,6 @@ export class ProductController {
     @Get('item/:id')
     async getProduct(@Param('id', ParseIntPipe) id: number): Promise<Product> {
         return await this.productService.getProduct(id)
-    }
-
-    @Get('category')
-    async getCategory(): Promise<Category[]> {
-        return await this.productService.getCategory()
     }
 
     @Get()

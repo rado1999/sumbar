@@ -4,6 +4,8 @@ import { config } from 'dotenv'
 import { ProductModule } from './product/product.module'
 import { OtherModule } from './other/other.module'
 import { AuthModule } from './auth/auth.module'
+import { MenuModule } from './menu/menu.module'
+import { SiteReviewsModule } from './site-reviews/site-reviews.module'
 
 config()
 
@@ -24,7 +26,9 @@ config()
         }),
         ProductModule,
         OtherModule,
-        AuthModule
+        AuthModule,
+        MenuModule,
+        SiteReviewsModule
     ]
 })
 export class AppModule { }

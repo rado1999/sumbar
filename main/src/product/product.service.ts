@@ -7,7 +7,6 @@ import { Options } from './dto/options.dto'
 import { Meta, Result } from './dto/result.dto'
 import { ProductCreateDto, WhichProductDto } from './dto/product.dto'
 import { ReviewDto } from './dto/review.dto'
-import { Category } from './entities/category.entity'
 import { Product } from './entities/product.entity'
 import { Review } from './entities/review.entity'
 
@@ -16,8 +15,6 @@ export class ProductService {
     constructor(
         @InjectRepository(Product)
         private readonly productRepo: Repository<Product>,
-        @InjectRepository(Category)
-        private readonly categoryRepo: Repository<Category>,
         @InjectRepository(Review)
         private readonly reviewRepo: Repository<Review>
     ) {}
@@ -41,12 +38,6 @@ export class ProductService {
         })
         if (!result) throw new NotFoundException()
         return result
-    }
-
-    async getCategory(): Promise<Category[]> {
-        return await this.categoryRepo.find(
-            { relations: ['subCategory'], order: { id: 'ASC' } }
-        )
     }
 
     async getByCategory(which: WhichProductDto): Promise<Product[]> {

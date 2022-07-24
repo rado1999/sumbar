@@ -1,0 +1,61 @@
+### 1. Give the menu (category and sub category)
+
+### 2. Reviews -> show the last 5 reviews, total reviews, rating number
+   Review -> stars, username, review
+   If clicked on 'all reviews', show them all -> total reviews, rating number, stars, username, review
+   Leave feedback -> AUTH = true, how many stars, review
+
+3. Report a problem -> username, phone, or email, message
+
+4. Main page:
+
+	I. Give big and small images
+	II. Recommended, new, popular
+	III. Show the last products of:
+			a) routers
+			b) motherboars
+			c) gpu
+			d) mobile peripherals
+			e) headset
+			f) portable speakers
+	IV. Brands -> all images. If clicked, show all products of this brand
+	    If clicked on brands -> show them all
+
+5. All products:
+	a) The total number of products
+	b) Filter:
+		- discounts
+		- new old, old to new
+		- price low to high, high to low
+		- most popular
+		- how many (40, 60, 80, 100)
+
+6. Product Page:
+	I. About product
+		a) Images
+		b) title
+		c) brand
+		d) model
+		e) short description
+		f) price
+		g) all specifications
+		h) description
+		i) reviews -> stars, username, review, likes, dislikes
+		   POST review -> AUTH = true -> stars, review
+	II. Similar -> show last 4 product of this category
+	III. Recommended -> show 4 product
+	IV. New and Popular -> show last 4 product
+
+7. Like -> if loggined like to product
+
+8. Authentication and Authorization:
+	I. Send a key password to the phone number:
+	II. Confirm a password:
+		a) if phone number is not in database, create a new user and send a tokens
+		b) if phone number is in database, just send a tokens
+
+9. User
+	I. Favorites -> show products liked by user and the total of liked (filter the same as in 'all products')
+	II. Reviews of products -> show reviews of products
+	III. Addresses
+	IV. Edit profile -> post username and email

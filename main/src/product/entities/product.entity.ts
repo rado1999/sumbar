@@ -1,3 +1,5 @@
+import { Category } from 'src/menu/entities/category.entity'
+import { SubCategory } from 'src/menu/entities/subCategory.entity'
 import { Likes } from 'src/other/entities/likes.entity'
 import {
     AllSpecifications
@@ -7,8 +9,6 @@ import { Review } from 'src/product/entities/review.entity'
 import {
     Column, Entity, ManyToOne, OneToMany, OneToOne,
     PrimaryGeneratedColumn } from 'typeorm'
-import { Category } from './category.entity'
-import { SubCategory } from './subCategory.entity'
 
 @Entity()
 export class Product {
@@ -39,14 +39,14 @@ export class Product {
     @ManyToOne(
         () => Category,
         category => category.product,
-        { onDelete: 'CASCADE' }
+        { onDelete: 'SET NULL' }
     )
     category: Category
 
     @ManyToOne(
         () => SubCategory,
         subCategory => subCategory.product,
-        { onDelete: 'CASCADE' }
+        { onDelete: 'SET NULL' }
     )
     subCategory: SubCategory
 
