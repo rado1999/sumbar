@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module'
 import { MenuModule } from './menu/menu.module'
 import { SiteReviewsModule } from './site-reviews/site-reviews.module'
 import { ReportModule } from './report/report.module';
+import { MainPageModule } from './main-page/main-page.module';
 
 config()
 
@@ -30,7 +31,8 @@ config()
         AuthModule,
         MenuModule,
         SiteReviewsModule,
-        ReportModule
+        ReportModule,
+        MainPageModule
     ]
 })
 export class AppModule { }
