@@ -47,4 +47,19 @@ export class MainPageService {
             JOIN description ON description."productId" = product.id
         `, [8])
     }
+
+    // by category 'motherboards', 'gpu', 'mobile peripherals' and etc.
+    async getProducts(): Promise<Product[]> {
+        return await this.productRepo.query(`
+            WITH my_result AS (
+                SELECT *, ROW_NUMBER()
+                OVER(PARTITION BY "subCategoryId") AS row_number
+                FROM product
+            )
+            SELECT * FROM my_result
+            WHERE "subCategoryId" IN ($1, $2, $3, $4, $5, $6)
+            AND row_number <= $7
+            ORDER BY "subCategoryId" ASC
+        `, [56, 2, 5, 48, 18, 20, 4])
+    }
 }

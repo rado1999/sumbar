@@ -35,4 +35,9 @@ export class MainPageController {
     async getPopularProducts(): Promise<Product[]> {
         return await this.mainPageService.getPopularProducts()
     }
+
+    @Get('categories')
+    async getProducts(): Promise<Product[]> {
+        return await this.mainPageService.getProducts()
+    }
 }
