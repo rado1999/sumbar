@@ -45,7 +45,7 @@
 	III. Recommended -> show 4 product ===================== YOU DIDN'T DO IT
 	IV. New and Popular -> show last 4 product
 
-7. Like -> if loggined like to product
+### 7. Product like -> if loggined like to product
 
 8. Authentication and Authorization:
 	I. Send a key password to the phone number:

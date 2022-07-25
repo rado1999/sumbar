@@ -1,6 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+    BadRequestException, Injectable, NotFoundException
+} from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { DeleteResult, Repository } from 'typeorm'
 import { Options } from './dto/options.dto'
 import { Meta, Result } from './dto/result.dto'
 import { ProductCreateDto } from './dto/product.dto'
@@ -100,6 +102,32 @@ export class ProductService {
             where: { subCategory: { id: product.subCategory.id } },
             order: { id: 'DESC' },
             take: 4
+        })
+    }
+
+    async like(id: any, req: any): Promise<void> {
+        const likeExist = await this.productRepo.findOne({ where: { id } })
+        if (!likeExist) throw new NotFoundException()
+
+        const isRepeat = await this.productLikesRepo.query(
+            'SELECT "productId" + "userId" AS sum ' +
+            `FROM product_likes ` +
+            'WHERE "userId" = $1 AND "productId" = $2', [req.userId, id]
+        )
+
+        if (isRepeat[0] && isRepeat[0].sum === req.userId + id)
+            throw new BadRequestException('This user has already liked')
+
+        const like = this.productLikesRepo.create()
+        like.product = id
+        like.user = req.userId
+        await this.productLikesRepo.save(like)
+    }
+
+    async dislike(id: any, req: any): Promise<DeleteResult> {
+        return await this.productLikesRepo.delete({
+            product: id,
+            user: req.userId
         })
     }
 }

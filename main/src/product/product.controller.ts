@@ -1,5 +1,5 @@
 import {
-    Body, Controller, Get, Param, ParseIntPipe, Post, Query, Req, UseGuards
+    Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, Req, UseGuards
 } from '@nestjs/common'
 import { AuthGuard } from 'src/auth/auth.guard'
 import { Options } from './dto/options.dto'
@@ -9,6 +9,7 @@ import { ReviewDto } from './dto/review.dto'
 import { Product } from './entities/product.entity'
 import { ProductReviews } from './entities/product-reviews.entity'
 import { ProductService } from './product.service'
+import { DeleteResult } from 'typeorm'
 
 @Controller('product')
 export class ProductController {
@@ -52,5 +53,23 @@ export class ProductController {
         @Param('id', ParseIntPipe) id: number
     ): Promise<Product[]> {
         return await this.productService.getSimilarProducts(id)
+    }
+
+    @UseGuards(AuthGuard)
+    @Post('like/:id')
+    async like(
+        @Param('id', ParseIntPipe) id: number,
+        @Req() req: any
+    ): Promise<void> {
+        return await this.productService.like(id, req)
+    }
+
+    @UseGuards(AuthGuard)
+    @Delete('like/:id')
+    async dislike(
+        @Param('id', ParseIntPipe) id: number,
+        @Req() req: any
+    ): Promise<DeleteResult> {
+        return await this.productService.dislike(id, req)
     }
 }
