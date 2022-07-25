@@ -17,3 +17,7 @@ csv delimiter ',' quote '"' escape '\';
 copy description (id, "desc", "productId")
 from '/home/dova/Документы/descriptions.csv'
 with csv;
+
+copy brands (id, company, logo)
+from '/home/dova/Документы/brands.csv'
+with csv;

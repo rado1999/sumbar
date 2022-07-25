@@ -1,5 +1,8 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Query } from '@nestjs/common'
 import { Product } from 'src/product/entities/product.entity'
+import { Options } from './dto/options.dto'
+import { Result } from './dto/result.dto'
+import { Brands } from './entities/brands.entity'
 import { MainPageService } from './main-page.service'
 
 @Controller('main-page')
@@ -39,5 +42,15 @@ export class MainPageController {
     @Get('categories')
     async getProducts(): Promise<Product[]> {
         return await this.mainPageService.getProducts()
+    }
+
+    @Get('brands')
+    async getBrands(): Promise<Brands[]> {
+        return await this.mainPageService.getBrands()
+    }
+
+    @Get('by-brand')
+    async getByBrand(@Query() options: Options): Promise<Result> {
+        return await this.mainPageService.getByBrand(options)
     }
 }

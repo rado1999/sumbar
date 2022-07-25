@@ -5,13 +5,13 @@
    If clicked on 'all reviews', show them all -> total reviews, rating number, stars, username, review
    Leave feedback -> AUTH = true, how many stars, review
 
-3. Report a problem -> username, phone, or email, message
+### 3. Report a problem -> username, phone, or email, message
 
-4. Main page:
+### 4. Main page:
 
-	### I. Give big and small images
-	### II. Recommended, new, popular
-	### III. Show the last products of:
+	I. Give big and small images
+	II. Recommended, new, popular
+	III. Show the last products of:
 			a) routers
 			b) motherboars
 			c) gpu
@@ -19,7 +19,6 @@
 			e) headset
 			f) portable speakers
 	IV. Brands -> all images. If clicked, show all products of this brand
-	    If clicked on brands -> show them all
 
 5. All products:
 	a) The total number of products

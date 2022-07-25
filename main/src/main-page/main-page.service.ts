@@ -2,12 +2,17 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Product } from 'src/product/entities/product.entity'
 import { In, Repository } from 'typeorm'
+import { Options } from './dto/options.dto'
+import { Meta, Result } from './dto/result.dto'
+import { Brands } from './entities/brands.entity'
 
 @Injectable()
 export class MainPageService {
     constructor(
         @InjectRepository(Product)
         private readonly productRepo: Repository<Product>,
+        @InjectRepository(Brands)
+        private readonly brandsRepo: Repository<Brands>
     ) {}
 
     async getSmallImages(): Promise<Product[]> {
@@ -61,5 +66,24 @@ export class MainPageService {
             AND row_number <= $7
             ORDER BY "subCategoryId" ASC
         `, [56, 2, 5, 48, 18, 20, 4])
+    }
+
+    async getBrands(): Promise<Brands[]> {
+        return await this.brandsRepo.find()
+    }
+
+    async getByBrand(options: Options): Promise<Result> {
+        const count = await this.productRepo.count({
+            where: { company: options.company }
+        })
+        const entities = await this.productRepo.find({
+            where: { company: options.company },
+            order: { [options.by]: options.order },
+            skip: options.skip,
+            take: options.take
+        })
+
+        const meta = new Meta(options.page, options.take, count)
+        return new Result(entities, meta)
     }
 }
