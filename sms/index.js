@@ -1,6 +1,8 @@
 import express from 'express'
 import { validateConfirm, validatePhone } from './validation.js'
-import { savePassword, confirmPassword, checkUser } from './db.js'
+import {
+    savePassword, confirmPassword, checkUser, deletePassword
+} from './db.js'
 import { sendMessage } from './message.js'
 import { errorMessage } from './utils.js'
 
@@ -34,6 +36,26 @@ app.post('/', async (req, res) => {
     return res.status(201).send()
 })
 
+app.post('/resend', async (req, res) => {
+    const phone = req.body.phone
+    const mess = validatePhone(phone)
+
+    if (mess.length !== 0) return res.status(400).send(errorMessage(mess))
+
+    const password = Math.random().toString().slice(2, 8)
+
+    await deletePassword(phone)
+
+    const result = await savePassword(phone, password)
+    if (!result) return res.status(400).send(errorMessage(
+        'This phone number is already used'
+    ))
+
+    // await sendMessage(phone, password)
+
+    return res.status(201).send()
+})
+
 app.post('/confirm', async (req, res) => {
     const { phone, password } = req.body
     const mess = validateConfirm(phone, password)
@@ -46,9 +68,11 @@ app.post('/confirm', async (req, res) => {
 
     const result_ = await checkUser(phone)
     
+    // if user doesn't exist, then registrate him
     if (!result_) return res.sendStatus(200)
     
-    return res.status(200).send(result_)
+    // else, just give him/her the tokens
+    return res.status(200).send({ id: result_.id })
 })
 
 app.listen(3001, 'localhost')

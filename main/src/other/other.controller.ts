@@ -4,7 +4,7 @@ import {
 import { Request } from 'express'
 import { AuthGuard } from 'src/auth/auth.guard'
 import { LikesDto } from './dto/likes.dto'
-import { UserDto } from './dto/user.dto'
+import { Login, UserDto } from './dto/user.dto'
 import { ProductLikes } from '../product/entities/likes.entity'
 import { OtherService } from './other.service'
 
@@ -13,6 +13,11 @@ export class OtherController {
     constructor(
         private readonly otherService: OtherService
     ) {}
+
+    @Post('login')
+    async login(@Body() login: Login): Promise<any> {
+        return await this.otherService.login(login)
+    }
 
     @Post('create')
     async createUser(@Body() user: UserDto): Promise<string> {

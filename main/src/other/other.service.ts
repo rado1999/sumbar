@@ -5,7 +5,7 @@ import { JwtService } from '@nestjs/jwt'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { LikesDto } from './dto/likes.dto'
-import { UserDto } from './dto/user.dto'
+import { Login, UserDto } from './dto/user.dto'
 import { ProductLikes } from '../product/entities/likes.entity'
 import { User } from './entities/user.entity'
 import { config } from 'dotenv'
@@ -23,17 +23,25 @@ export class OtherService {
         private readonly jwtService: JwtService
     ) { }
 
+    async login(login: Login): Promise<any> {
+        const user = await this.userRepo.findOne({ where: { id: login.id } })
+        if (!user) throw new NotFoundException()
+
+        return this.createTokens(user.id)
+    }
+
     async createUser(user: UserDto): Promise<string> {
         const currentUser = await this.userRepo.findOne({
-            where: { email: user.email }
+            where: { email: user.email, phone: user.phone }
         })
-        if (!currentUser) {
-            const newUser = this.userRepo.create(user)
-            await this.userRepo.save(newUser)
-            return this.createTokens(newUser.id)
-        }
 
-        return this.createTokens(currentUser.id)
+        if (currentUser) throw new BadRequestException(
+            'This email or phone is already exist'
+        )
+
+        const newUser = this.userRepo.create(user)
+        await this.userRepo.save(newUser)
+        return this.createTokens(newUser.id)
     }
 
     async createLike(like: LikesDto, req: any): Promise<void> {
