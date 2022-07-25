@@ -1,4 +1,4 @@
-import { Review } from 'src/product/entities/review.entity'
+import { ProductReviews } from 'src/product/entities/product-reviews.entity'
 import {
     SiteReviewsDislikes
 } from 'src/site-reviews/entities/site-reviews-dislikes.entity'
@@ -9,7 +9,7 @@ import { SiteReviews } from 'src/site-reviews/entities/site-reviews.entity'
 import {
     Column, Entity, OneToMany, PrimaryGeneratedColumn
 } from 'typeorm'
-import { ProductLikes } from './likes.entity'
+import { ProductLikes } from '../../product/entities/likes.entity'
 
 @Entity()
 export class User {
@@ -40,9 +40,9 @@ export class User {
     )
     siteReviewsDislikes: SiteReviewsDislikes
 
-    @OneToMany(() => Review, review => review.user)
-    reviews: Review[]
+    @OneToMany(() => ProductReviews, review => review.user)
+    reviews: ProductReviews[]
 
-    @OneToMany(() => ProductLikes, productLikes => productLikes.user)
-    productLikes: ProductLikes
+    @OneToMany(() => ProductLikes, likes => likes.user)
+    likes: ProductLikes
 }

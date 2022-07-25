@@ -1,18 +1,18 @@
 import { Product } from 'src/product/entities/product.entity'
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { User } from './user.entity'
+import { User } from '../../other/entities/user.entity'
 
 @Entity()
 export class ProductLikes {
     @PrimaryGeneratedColumn()
     id: number
 
-    @ManyToOne(() => User, user => user.productLikes, { onDelete: 'CASCADE' })
+    @ManyToOne(() => User, user => user.likes, { onDelete: 'CASCADE' })
     user: User
 
     @ManyToOne(
         () => Product,
-        product => product.productLikes,
+        product => product.likes,
         { onDelete: 'CASCADE' }
     )
     product: Product

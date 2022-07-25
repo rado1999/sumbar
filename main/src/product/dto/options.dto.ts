@@ -11,6 +11,11 @@ enum By {
     ID = 'id'
 }
 
+enum Popular {
+    TRUE = 'true',
+    FALSE = 'false'
+}
+
 export class Options {
     @IsEnum(Order)
     @IsOptional()
@@ -32,6 +37,10 @@ export class Options {
     @IsEnum(By)
     @IsOptional()
     by: By = By.ID
+
+    @IsEnum(Popular)
+    @IsOptional()
+    popular: Popular = Popular.FALSE
 
     get skip(): number {
         return (this.page - 1) * this.take

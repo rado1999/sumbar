@@ -1,11 +1,11 @@
 import { User } from 'src/other/entities/user.entity'
 import { Product } from 'src/product/entities/product.entity'
 import {
-    Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Unique
+    Column, Entity, ManyToOne, PrimaryGeneratedColumn
 } from 'typeorm'
 
 @Entity()
-export class Review {
+export class ProductReviews {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -15,9 +15,6 @@ export class Review {
     @Column('smallint')
     stars: number
 
-    @CreateDateColumn()
-    createdAt: Date
-
     @ManyToOne(
         () => Product,
         product => product.reviews,
@@ -25,7 +22,6 @@ export class Review {
     )
     product: Product
 
-    @Unique(['userId'])
     @ManyToOne(() => User, user => user.reviews, { onDelete: 'CASCADE' })
     user: User
 }

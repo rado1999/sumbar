@@ -1,10 +1,12 @@
-import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common'
+import {
+    BadRequestException, Injectable, NotFoundException, UnauthorizedException
+} from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { LikesDto } from './dto/likes.dto'
 import { UserDto } from './dto/user.dto'
-import { ProductLikes } from './entities/likes.entity'
+import { ProductLikes } from '../product/entities/likes.entity'
 import { User } from './entities/user.entity'
 import { config } from 'dotenv'
 import { Request } from 'express'

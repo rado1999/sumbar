@@ -4,10 +4,10 @@ import {
 import { AuthGuard } from 'src/auth/auth.guard'
 import { Options } from './dto/options.dto'
 import { Result } from './dto/result.dto'
-import { ProductCreateDto, WhichProductDto } from './dto/product.dto'
+import { ProductCreateDto } from './dto/product.dto'
 import { ReviewDto } from './dto/review.dto'
 import { Product } from './entities/product.entity'
-import { Review } from './entities/review.entity'
+import { ProductReviews } from './entities/product-reviews.entity'
 import { ProductService } from './product.service'
 
 @Controller('product')
@@ -26,29 +26,6 @@ export class ProductController {
         return await this.productService.getProduct(id)
     }
 
-    @Get()
-    async getByCategory(@Query() which: WhichProductDto): Promise<Product[]> {
-        return await this.productService.getByCategory(which)
-    }
-
-    @Get('big_images')
-    getBigImages(): string[] {
-        return [
-            'http://localhost:3000/big_images/1.jpg',
-            'http://localhost:3000/big_images/2.jpg',
-            'http://localhost:3000/big_images/3.jpg',
-            'http://localhost:3000/big_images/4.jpg',
-            'http://localhost:3000/big_images/5.jpg',
-            'http://localhost:3000/big_images/6.jpg',
-            'http://localhost:3000/big_images/7.jpg',
-        ]
-    }
-
-    @Get('small_images')
-    async getSmallImages(): Promise<Product[]> {
-        return await this.productService.getSmallImages()
-    }
-
     @Post('create')
     async createProduct(@Body() product: ProductCreateDto): Promise<string> {
         return await this.productService.createProduct(product)
@@ -62,15 +39,18 @@ export class ProductController {
         return await this.productService.createReview(review, req)
     }
 
-    @UseGuards(AuthGuard)
-    @Get('reviews')
-    async getReviews(): Promise<Review[]> {
-        return await this.productService.getReviews()
+    // get the reviews only of one product
+    @Get('reviews/:id')
+    async getReviews(
+        @Param('id', ParseIntPipe) id: number
+    ): Promise<ProductReviews[]> {
+        return await this.productService.getReviews(id)
     }
 
-    @UseGuards(AuthGuard)
-    @Get('review/:id')
-    async getReview(@Param('id', ParseIntPipe) id: number): Promise<Review> {
-        return await this.productService.getReview(id)
+    @Get('similar/:id')
+    async getSimilarProduct(
+        @Param('id', ParseIntPipe) id: number
+    ): Promise<Product[]> {
+        return await this.productService.getSimilarProducts(id)
     }
 }

@@ -20,16 +20,16 @@
 			f) portable speakers
 	IV. Brands -> all images. If clicked, show all products of this brand
 
-5. All products:
+### 5. All products:
 	a) The total number of products
 	b) Filter:
-		- discounts
+		- discounts ========================== YOU DIDN'T DO IT
 		- new old, old to new
 		- price low to high, high to low
 		- most popular
 		- how many (40, 60, 80, 100)
 
-6. Product Page:
+### 6. Product Page:
 	I. About product
 		a) Images
 		b) title
@@ -42,7 +42,7 @@
 		i) reviews -> stars, username, review, likes, dislikes
 		   POST review -> AUTH = true -> stars, review
 	II. Similar -> show last 4 product of this category
-	III. Recommended -> show 4 product
+	III. Recommended -> show 4 product ===================== YOU DIDN'T DO IT
 	IV. New and Popular -> show last 4 product
 
 7. Like -> if loggined like to product
