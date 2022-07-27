@@ -47,13 +47,13 @@
 
 ### 7. Product like -> if loggined like to product
 
-8. Authentication and Authorization:
+### 8. Authentication and Authorization:
 	I. Send a key password to the phone number:
 	II. Confirm a password:
 		a) if phone number is not in database, create a new user and send a tokens
 		b) if phone number is in database, just send a tokens
 
-9. User
+### 9. User
 	I. Favorites -> show products liked by user and the total of liked (filter the same as in 'all products')
 	II. Reviews of products -> show reviews of products
 	III. Addresses

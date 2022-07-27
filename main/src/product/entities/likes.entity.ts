@@ -1,6 +1,6 @@
 import { Product } from 'src/product/entities/product.entity'
+import { User } from 'src/users/entities/user.entity'
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { User } from '../../other/entities/user.entity'
 
 @Entity()
 export class ProductLikes {

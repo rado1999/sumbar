@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { config } from 'dotenv'
 import { ProductModule } from './product/product.module'
-import { OtherModule } from './other/other.module'
 import { AuthModule } from './auth/auth.module'
 import { MenuModule } from './menu/menu.module'
 import { SiteReviewsModule } from './site-reviews/site-reviews.module'
-import { ReportModule } from './report/report.module';
-import { MainPageModule } from './main-page/main-page.module';
+import { ReportModule } from './report/report.module'
+import { MainPageModule } from './main-page/main-page.module'
+import { UsersModule } from './users/users.module'
 
 config()
 
@@ -27,12 +27,12 @@ config()
             })
         }),
         ProductModule,
-        OtherModule,
         AuthModule,
         MenuModule,
         SiteReviewsModule,
         ReportModule,
-        MainPageModule
+        MainPageModule,
+        UsersModule
     ]
 })
 export class AppModule { }

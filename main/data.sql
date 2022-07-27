@@ -21,6 +21,41 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: addresses; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.addresses (
+    id integer NOT NULL,
+    address character varying NOT NULL,
+    "userId" integer
+);
+
+
+ALTER TABLE public.addresses OWNER TO postgres;
+
+--
+-- Name: addresses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.addresses_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.addresses_id_seq OWNER TO postgres;
+
+--
+-- Name: addresses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.addresses_id_seq OWNED BY public.addresses.id;
+
+
+--
 -- Name: all_specifications; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -53,6 +88,41 @@ ALTER TABLE public.all_specifications_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE public.all_specifications_id_seq OWNED BY public.all_specifications.id;
+
+
+--
+-- Name: brands; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.brands (
+    id integer NOT NULL,
+    company character varying NOT NULL,
+    logo character varying NOT NULL
+);
+
+
+ALTER TABLE public.brands OWNER TO postgres;
+
+--
+-- Name: brands_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.brands_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.brands_id_seq OWNER TO postgres;
+
+--
+-- Name: brands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.brands_id_seq OWNED BY public.brands.id;
 
 
 --
@@ -123,41 +193,6 @@ ALTER TABLE public.description_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE public.description_id_seq OWNED BY public.description.id;
-
-
---
--- Name: likes; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.likes (
-    id integer NOT NULL,
-    "userId" integer,
-    "productId" integer
-);
-
-
-ALTER TABLE public.likes OWNER TO postgres;
-
---
--- Name: likes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.likes_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.likes_id_seq OWNER TO postgres;
-
---
--- Name: likes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.likes_id_seq OWNED BY public.likes.id;
 
 
 --
@@ -238,26 +273,23 @@ ALTER SEQUENCE public.product_id_seq OWNED BY public.product.id;
 
 
 --
--- Name: review; Type: TABLE; Schema: public; Owner: postgres
+-- Name: product_likes; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.review (
+CREATE TABLE public.product_likes (
     id integer NOT NULL,
-    text text NOT NULL,
-    stars smallint NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT now() NOT NULL,
-    "productId" integer,
-    "userId" integer
+    "userId" integer,
+    "productId" integer
 );
 
 
-ALTER TABLE public.review OWNER TO postgres;
+ALTER TABLE public.product_likes OWNER TO postgres;
 
 --
--- Name: review_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: product_likes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.review_id_seq
+CREATE SEQUENCE public.product_likes_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -266,13 +298,193 @@ CREATE SEQUENCE public.review_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.review_id_seq OWNER TO postgres;
+ALTER TABLE public.product_likes_id_seq OWNER TO postgres;
 
 --
--- Name: review_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: product_likes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.review_id_seq OWNED BY public.review.id;
+ALTER SEQUENCE public.product_likes_id_seq OWNED BY public.product_likes.id;
+
+
+--
+-- Name: product_reviews; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.product_reviews (
+    id integer NOT NULL,
+    text text NOT NULL,
+    stars smallint NOT NULL,
+    "productId" integer,
+    "userId" integer
+);
+
+
+ALTER TABLE public.product_reviews OWNER TO postgres;
+
+--
+-- Name: product_reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.product_reviews_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.product_reviews_id_seq OWNER TO postgres;
+
+--
+-- Name: product_reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.product_reviews_id_seq OWNED BY public.product_reviews.id;
+
+
+--
+-- Name: report; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.report (
+    id integer NOT NULL,
+    username character varying NOT NULL,
+    phone character varying,
+    email character varying,
+    message character varying NOT NULL
+);
+
+
+ALTER TABLE public.report OWNER TO postgres;
+
+--
+-- Name: report_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.report_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.report_id_seq OWNER TO postgres;
+
+--
+-- Name: report_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.report_id_seq OWNED BY public.report.id;
+
+
+--
+-- Name: site_reviews; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.site_reviews (
+    id integer NOT NULL,
+    stars smallint NOT NULL,
+    review character varying NOT NULL,
+    "userId" integer
+);
+
+
+ALTER TABLE public.site_reviews OWNER TO postgres;
+
+--
+-- Name: site_reviews_dislikes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.site_reviews_dislikes (
+    id integer NOT NULL,
+    "siteReviewsId" integer,
+    "userId" integer
+);
+
+
+ALTER TABLE public.site_reviews_dislikes OWNER TO postgres;
+
+--
+-- Name: site_reviews_dislikes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.site_reviews_dislikes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.site_reviews_dislikes_id_seq OWNER TO postgres;
+
+--
+-- Name: site_reviews_dislikes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.site_reviews_dislikes_id_seq OWNED BY public.site_reviews_dislikes.id;
+
+
+--
+-- Name: site_reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.site_reviews_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.site_reviews_id_seq OWNER TO postgres;
+
+--
+-- Name: site_reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.site_reviews_id_seq OWNED BY public.site_reviews.id;
+
+
+--
+-- Name: site_reviews_likes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.site_reviews_likes (
+    id integer NOT NULL,
+    "siteReviewsId" integer,
+    "userId" integer
+);
+
+
+ALTER TABLE public.site_reviews_likes OWNER TO postgres;
+
+--
+-- Name: site_reviews_likes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.site_reviews_likes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.site_reviews_likes_id_seq OWNER TO postgres;
+
+--
+-- Name: site_reviews_likes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.site_reviews_likes_id_seq OWNED BY public.site_reviews_likes.id;
 
 
 --
@@ -348,10 +560,24 @@ ALTER SEQUENCE public.user_id_seq OWNED BY public."user".id;
 
 
 --
+-- Name: addresses id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.addresses ALTER COLUMN id SET DEFAULT nextval('public.addresses_id_seq'::regclass);
+
+
+--
 -- Name: all_specifications id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.all_specifications ALTER COLUMN id SET DEFAULT nextval('public.all_specifications_id_seq'::regclass);
+
+
+--
+-- Name: brands id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.brands ALTER COLUMN id SET DEFAULT nextval('public.brands_id_seq'::regclass);
 
 
 --
@@ -369,13 +595,6 @@ ALTER TABLE ONLY public.description ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- Name: likes id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.likes ALTER COLUMN id SET DEFAULT nextval('public.likes_id_seq'::regclass);
-
-
---
 -- Name: password id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -390,10 +609,45 @@ ALTER TABLE ONLY public.product ALTER COLUMN id SET DEFAULT nextval('public.prod
 
 
 --
--- Name: review id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: product_likes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.review ALTER COLUMN id SET DEFAULT nextval('public.review_id_seq'::regclass);
+ALTER TABLE ONLY public.product_likes ALTER COLUMN id SET DEFAULT nextval('public.product_likes_id_seq'::regclass);
+
+
+--
+-- Name: product_reviews id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.product_reviews ALTER COLUMN id SET DEFAULT nextval('public.product_reviews_id_seq'::regclass);
+
+
+--
+-- Name: report id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.report ALTER COLUMN id SET DEFAULT nextval('public.report_id_seq'::regclass);
+
+
+--
+-- Name: site_reviews id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.site_reviews ALTER COLUMN id SET DEFAULT nextval('public.site_reviews_id_seq'::regclass);
+
+
+--
+-- Name: site_reviews_dislikes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.site_reviews_dislikes ALTER COLUMN id SET DEFAULT nextval('public.site_reviews_dislikes_id_seq'::regclass);
+
+
+--
+-- Name: site_reviews_likes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.site_reviews_likes ALTER COLUMN id SET DEFAULT nextval('public.site_reviews_likes_id_seq'::regclass);
 
 
 --
@@ -408,6 +662,21 @@ ALTER TABLE ONLY public.sub_category ALTER COLUMN id SET DEFAULT nextval('public
 --
 
 ALTER TABLE ONLY public."user" ALTER COLUMN id SET DEFAULT nextval('public.user_id_seq'::regclass);
+
+
+--
+-- Data for Name: addresses; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.addresses (id, address, "userId") FROM stdin;
+1	Mahtymguly street, house 166, room 7	1
+2	Taslama street, house 50, room 17	1
+3	Some street, some house, some room	2
+4	Friday street, fridays house and fridays room	3
+6	The same address of person with id 5	5
+7	Milky Way galaxy, some planet and some building	6
+5	USA, some building, room "who knows -_-"	4
+\.
 
 
 --
@@ -1687,6 +1956,143 @@ COPY public.all_specifications (id, specification, "productId") FROM stdin;
 1270	{"Тип": "трос безопасности", "Цвет": "чёрный", "Гарантия (мес.)": "нет", "Страна-производитель": "Китай"}	1270
 1271	{"Тип": "трос безопасности", "Цвет": "чёрный", "Гарантия (мес.)": "нет", "Страна-производитель": "Китай"}	1271
 1272	{"Тип": "трос безопасности", "Отличительные особенности": "кодовый замок", "Цвет": "серый", "Гарантия (мес.)": "нет", "Страна-производитель": "Китай"}	1272
+\.
+
+
+--
+-- Data for Name: brands; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.brands (id, company, logo) FROM stdin;
+1	2E	http://localhost:3002/173/qDLmv7fzFP.png
+2	70mai	http://localhost:3002/759/F0oBxgxOWB.png
+3	A4TECH	http://localhost:3002/207/wwUVT0WGyC.png
+4	ADATA	http://localhost:3002/125/Ri25D2Enh2.png
+5	AEROCOOL	http://localhost:3002/9/qzcvka40oJ.png
+6	AMAZON	http://localhost:3002/700/SLjtwVLhm4.png
+7	ANDA SEAT	http://localhost:3002/1031/PTnHaxijrX.png
+8	ANKER	http://localhost:3002/708/HXGqShOAc9.png
+9	ANTEC	http://localhost:3002/11/T9nKhA2lSS.png
+10	ANYCOLOR	http://localhost:3002/849/pgi3THvJrz.png
+11	AORUS	http://localhost:3002/309/EJRL6wcuV9.png
+12	APACER	http://localhost:3002/497/A3NhU5NM5W.png
+13	APPLE	http://localhost:3002/769/Vip6K4muH2.png
+14	ARCTIC	http://localhost:3002/180/evBTkDpZ1v.png
+15	ARENTI	http://localhost:3002/1046/GL5Wbe8WZG.png
+16	ASUS	http://localhost:3002/300/yw2UQ3Yoe5.png
+17	BELKIN	http://localhost:3002/709/76kr1lAY5S.png
+18	BOSCH	http://localhost:3002/1246/xIox7kPLuO.png
+19	BOSE	http://localhost:3002/329/Nfha2TkAmK.png
+20	CANON	http://localhost:3002/808/0l7rqXlbef.png
+21	CANYON	http://localhost:3002/271/M0yoZ8Vcgu.png
+22	CASSIDA	http://localhost:3002/992/IjS3JwU3UV.png
+23	COOLER MASTER	http://localhost:3002/158/bhktIroalA.png
+24	CORSAIR	http://localhost:3002/166/Oa6QMNrHzx.png
+25	CRUCIAL	http://localhost:3002/667/NLwW6XqTOC.png
+26	DAHUA	http://localhost:3002/976/a6d7WlTWEU.png
+27	DEEPCOOL	http://localhost:3002/15/SoKk5z0VYf.png
+28	DEERMA	http://localhost:3002/1073/AFjTUFccv1.png
+29	DELI	http://localhost:3002/840/kIxSzgMWQN.png
+30	DELL	http://localhost:3002/550/d0RlO7IbIn.png
+31	D-LINK	http://localhost:3002/927/ui9HAyDrSZ.png
+32	DREAM MACHINES	http://localhost:3002/307/JHcKknTZq0.png
+33	DXRACER	http://localhost:3002/1035/PnGGUXEQdr.png
+34	EMTEC	http://localhost:3002/500/HNWSr5eJ7a.png
+35	E-POS	http://localhost:3002/982/d01gODhwcV.png
+36	EPSON	http://localhost:3002/803/uSNqKLyYII.png
+37	F&D	http://localhost:3002/373/UxVfD4h5qC.png
+38	FIXTEC	http://localhost:3002/1228/Xvtgh8fz2W.png
+39	FJGEAR	http://localhost:3002/1227/kkaLPhrBY6.png
+40	FLEXSTON	http://localhost:3002/830/uhdtglDPLR.png
+41	FRACTAL	http://localhost:3002/17/wLW0lACAIP.png
+42	FSP	http://localhost:3002/143/56eYSCCdO5.png
+43	FURY	http://localhost:3002/80/xFReilR6MO.png
+44	GALAX	http://localhost:3002/1038/uVpgdbdoiA.png
+45	GAMEMAX	http://localhost:3002/168/dNB1Y5bIJu.png
+46	GENIUS	http://localhost:3002/272/eq8G0m4Bku.png
+47	GIGABYTE	http://localhost:3002/95/VVkze7AN5K.png
+48	GIGASET	http://localhost:3002/815/nNH5UYnySz.png
+49	G-MAX	http://localhost:3002/1044/JmbaB0Ommw.png
+50	GP	http://localhost:3002/1085/ZppTZ4b1vM.png
+51	HARMAN KARDON	http://localhost:3002/369/VkSIZkG87W.png
+52	Hewlett Packard Enterprise	http://localhost:3002/556/N0zJKSP54F.png
+53	HI-TONER	http://localhost:3002/851/vU7AnRp1LB.png
+54	HONEYWELL	http://localhost:3002/985/7qPOmmUm71.png
+55	HP	http://localhost:3002/211/w2WQ24nLP3.png
+56	HUAWEI	http://localhost:3002/938/28LyViISDL.png
+57	HUION	http://localhost:3002/692/KRFdCZQWaQ.png
+58	HYPERX	http://localhost:3002/86/5irYu6pHOw.png
+59	INKBANK	http://localhost:3002/885/1Foer63MLA.png
+60	INTEL	http://localhost:3002/62/tGbkHr7ydk.png
+61	J5	http://localhost:3002/423/y8wMsIbBfw.png
+62	JBL	http://localhost:3002/371/lC6b3vBiGh.png
+63	KGTEL	http://localhost:3002/685/w6CHHXc9Ls.png
+64	KINGSTON	http://localhost:3002/130/aeMsiUWQsY.png
+65	KOLIBRI	http://localhost:3002/994/lKPvLDSB5z.png
+66	LanCai	http://localhost:3002/843/72cENGo2bt.png
+67	LENOVO	http://localhost:3002/340/H9uyt1qE5z.png
+68	LEXAR	http://localhost:3002/530/EzwBqbqu8w.png
+69	LIAN LI	http://localhost:3002/198/mQ7eWjfERZ.png
+70	LIGHT WAVE	http://localhost:3002/1121/tDut4eoY0m.png
+71	LOGITECH	http://localhost:3002/261/xfclLT30tx.png
+72	MAXFONE	http://localhost:3002/691/h5BhZk48oI.png
+73	MAXMA	http://localhost:3002/1016/rM2XDfxUSD.png
+74	MERCURY	http://localhost:3002/1013/AFPKUrRbTd.png
+75	MERLIN	http://localhost:3002/486/VhEN91zO05.png
+76	MMC	http://localhost:3002/859/P6WxGaVQkt.png
+77	MM (DOUBLE M)	http://localhost:3002/649/71aZPjOKOX.png
+78	MR.DATA	http://localhost:3002/1262/YVK81Rfree.png
+79	MSI	http://localhost:3002/38/ef66NGmkF8.png
+80	NETIS	http://localhost:3002/894/fcwr7PcF8F.png
+81	NZXT	http://localhost:3002/31/D3NpLnSRoe.png
+82	OKI	http://localhost:3002/867/X2KNK5mswM.png
+83	OMEN	http://localhost:3002/283/GonH9xJZio.png
+84	OPENBOX	http://localhost:3002/1071/NcQohSeUrO.png
+85	ORICO	http://localhost:3002/918/XaXTRQRvjX.png
+86	OSCOO	http://localhost:3002/509/PtRAIhnHjA.png
+87	PALIT	http://localhost:3002/100/DQDiLxBkXb.png
+88	PANASONIC	http://localhost:3002/825/xDhsgdn07s.png
+89	PARBLO	http://localhost:3002/693/25Ech6R1Mf.png
+90	PARTNER TECH	http://localhost:3002/978/zZHbPh40ws.png
+91	PHILIPS	http://localhost:3002/405/TPMS8TnCO3.png
+92	PLM	http://localhost:3002/578/aeCpsc9ZqG.png
+93	PNY	http://localhost:3002/510/T8khTjHBAb.png
+94	PORODO	http://localhost:3002/735/OsVXN1WSM7.png
+95	PREMIUM	http://localhost:3002/868/ayKrV5fxgx.png
+96	RAIDMAX	http://localhost:3002/141/v1nscVcOf0.png
+97	RAPOO	http://localhost:3002/348/TiAlGnmMd6.png
+98	RAZER	http://localhost:3002/415/fmdbY7vq1o.png
+99	RIBBON	http://localhost:3002/1000/lVwsZM0JmA.png
+100	RIVACASE	http://localhost:3002/595/T3hzQPaYWn.png
+101	ROG	http://localhost:3002/13/o14JVhhi67.png
+102	SAMSUNG	http://localhost:3002/705/i6vNJovPR5.png
+103	SANDISK	http://localhost:3002/515/9OBK7mZd1W.png
+104	SEAGATE	http://localhost:3002/451/0wvXdjcEh9.png
+105	SHARKOON	http://localhost:3002/192/MuduKnWGvW.png
+106	SIGNATURE	http://localhost:3002/32/SQUoPtsewf.png
+107	SONY	http://localhost:3002/412/YeWfpt4qs9.png
+108	SPS	http://localhost:3002/872/rLyQ7z13Oe.png
+109	STEELSERIES	http://localhost:3002/357/9w6NFDJlxR.png
+110	TARGUS	http://localhost:3002/1272/WGGQHVtUsQ.png
+111	TEAM GROUP	http://localhost:3002/137/bLveWz4AuV.png
+112	TENCIA	http://localhost:3002/952/fi5AXhwX6F.png
+113	TENDA	http://localhost:3002/929/bnrfbsQ1Um.png
+114	TERMINATOR	http://localhost:3002/1239/IuDaol1xLm.png
+115	T-FORCE	http://localhost:3002/88/vqHObAVf07.png
+116	THERMALTAKE	http://localhost:3002/171/xQoYLPJqla.png
+117	TOSHIBA	http://localhost:3002/665/GVz99KQlK6.png
+118	TOTAL	http://localhost:3002/1229/rwpsFVRV1G.png
+119	TP-LINK	http://localhost:3002/912/S5aSWQ3PMZ.png
+120	TRANSCEND	http://localhost:3002/477/E5f7gw72f1.png
+121	TUF	http://localhost:3002/89/54Bitix10D.png
+122	UGREEN	http://localhost:3002/963/9jZi3j4vst.png
+123	WESTERN DIGITAL	http://localhost:3002/480/Ey0NY4Z1L8.png
+124	XDATA	http://localhost:3002/668/xCxwZKovLx.png
+125	XEROX	http://localhost:3002/844/8kilqK8q1I.png
+126	XIAOMI	http://localhost:3002/382/7fsKRktLjb.png
+127	XP-PEN	http://localhost:3002/694/otRiXibPGU.png
+128	ZALMAN	http://localhost:3002/35/gdfcH7Zj3A.png
+129	«Лаборатория Касперского»	http://localhost:3002/1245/4RzX41ey1k.png
 \.
 
 
@@ -2994,14 +3400,6 @@ COPY public.description (id, "desc", "productId") FROM stdin;
 
 
 --
--- Data for Name: likes; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.likes (id, "userId", "productId") FROM stdin;
-\.
-
-
---
 -- Data for Name: password; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -4290,10 +4688,103 @@ COPY public.product (id, "imageUrl", title, company, "companyImage", model, "mai
 
 
 --
--- Data for Name: review; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: product_likes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.review (id, text, stars, "createdAt", "productId", "userId") FROM stdin;
+COPY public.product_likes (id, "userId", "productId") FROM stdin;
+1	1	1
+2	1	2
+3	1	3
+4	1	4
+5	1	5
+6	2	6
+7	2	7
+8	2	8
+9	2	9
+10	2	10
+11	3	11
+12	3	12
+13	3	13
+14	4	14
+15	5	15
+16	5	16
+17	6	17
+18	6	18
+19	6	19
+20	6	1
+21	2	1
+22	2	2
+23	3	1
+24	3	1
+25	4	2
+\.
+
+
+--
+-- Data for Name: product_reviews; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.product_reviews (id, text, stars, "productId", "userId") FROM stdin;
+1	some unbelivable review	5	1	1
+2	the second review of some product	4	2	1
+3	the third review of some product	3	1	2
+4	the Groot said that is bull shit	1	1	6
+5	That is was.........-_-	1	1	5
+6	Good job!!!	5	2	3
+7	Hhhmmm, I thought it was the best one, but no((	1	3	4
+8	I do not know what should I write	3	3	2
+9	Ooooo, this one is the best I think	5	10	3
+10	Yep, I agree with you	5	10	5
+\.
+
+
+--
+-- Data for Name: report; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.report (id, username, phone, email, message) FROM stdin;
+\.
+
+
+--
+-- Data for Name: site_reviews; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.site_reviews (id, stars, review, "userId") FROM stdin;
+1	5	Oooo my......, the best site, I have ever seen	6
+2	5	Whooouuuuu, O_o. Just no comment	5
+3	1	Just bull shit, nothing else	1
+4	3	It could be better	3
+5	4	Norm	4
+6	5	Good service and good people	2
+\.
+
+
+--
+-- Data for Name: site_reviews_dislikes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.site_reviews_dislikes (id, "siteReviewsId", "userId") FROM stdin;
+1	1	1
+2	1	2
+3	1	3
+4	1	4
+5	1	5
+6	1	6
+\.
+
+
+--
+-- Data for Name: site_reviews_likes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.site_reviews_likes (id, "siteReviewsId", "userId") FROM stdin;
+1	3	1
+2	3	2
+3	3	3
+4	3	4
+5	3	5
+6	3	6
 \.
 
 
@@ -4398,7 +4889,20 @@ COPY public.sub_category (id, title, "imageUrl", "categoryId") FROM stdin;
 --
 
 COPY public."user" (id, email, phone, name) FROM stdin;
+1	dova.jarvis@gmail.com	+99362845400	Dovran
+2	jarvis@gmail.com	+99361111111	Jarvis
+3	friday@gmail.com	+99362222222	Friday
+4	ironman@gmail.com	+99363333333	Iron Man
+5	tonystark@gmail.com	+99364444444	Tony Stark
+6	Groot@gmail.com	+99365555555	I'm GROOT
 \.
+
+
+--
+-- Name: addresses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.addresses_id_seq', 7, true);
 
 
 --
@@ -4406,6 +4910,13 @@ COPY public."user" (id, email, phone, name) FROM stdin;
 --
 
 SELECT pg_catalog.setval('public.all_specifications_id_seq', 1, false);
+
+
+--
+-- Name: brands_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.brands_id_seq', 1, false);
 
 
 --
@@ -4423,13 +4934,6 @@ SELECT pg_catalog.setval('public.description_id_seq', 1, false);
 
 
 --
--- Name: likes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.likes_id_seq', 1, false);
-
-
---
 -- Name: password_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4444,10 +4948,45 @@ SELECT pg_catalog.setval('public.product_id_seq', 1, false);
 
 
 --
--- Name: review_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: product_likes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.review_id_seq', 1, false);
+SELECT pg_catalog.setval('public.product_likes_id_seq', 25, true);
+
+
+--
+-- Name: product_reviews_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.product_reviews_id_seq', 10, true);
+
+
+--
+-- Name: report_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.report_id_seq', 1, false);
+
+
+--
+-- Name: site_reviews_dislikes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.site_reviews_dislikes_id_seq', 6, true);
+
+
+--
+-- Name: site_reviews_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.site_reviews_id_seq', 6, true);
+
+
+--
+-- Name: site_reviews_likes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.site_reviews_likes_id_seq', 6, true);
 
 
 --
@@ -4461,15 +5000,15 @@ SELECT pg_catalog.setval('public.sub_category_id_seq', 1, false);
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.user_id_seq', 1, false);
+SELECT pg_catalog.setval('public.user_id_seq', 6, true);
 
 
 --
--- Name: review PK_2e4299a343a81574217255c00ca; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: site_reviews_dislikes PK_021f681921a4a257c8a9d240b16; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.review
-    ADD CONSTRAINT "PK_2e4299a343a81574217255c00ca" PRIMARY KEY (id);
+ALTER TABLE ONLY public.site_reviews_dislikes
+    ADD CONSTRAINT "PK_021f681921a4a257c8a9d240b16" PRIMARY KEY (id);
 
 
 --
@@ -4489,6 +5028,30 @@ ALTER TABLE ONLY public.sub_category
 
 
 --
+-- Name: product_reviews PK_67c1501aea1b0633ec441b00bd5; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.product_reviews
+    ADD CONSTRAINT "PK_67c1501aea1b0633ec441b00bd5" PRIMARY KEY (id);
+
+
+--
+-- Name: addresses PK_745d8f43d3af10ab8247465e450; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.addresses
+    ADD CONSTRAINT "PK_745d8f43d3af10ab8247465e450" PRIMARY KEY (id);
+
+
+--
+-- Name: report PK_99e4d0bea58cba73c57f935a546; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.report
+    ADD CONSTRAINT "PK_99e4d0bea58cba73c57f935a546" PRIMARY KEY (id);
+
+
+--
 -- Name: category PK_9c4e4a89e3674fc9f382d733f03; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4497,11 +5060,19 @@ ALTER TABLE ONLY public.category
 
 
 --
--- Name: likes PK_a9323de3f8bced7539a794b4a37; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: site_reviews_likes PK_9d429ab3b7af35981fc10758b8a; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.likes
-    ADD CONSTRAINT "PK_a9323de3f8bced7539a794b4a37" PRIMARY KEY (id);
+ALTER TABLE ONLY public.site_reviews_likes
+    ADD CONSTRAINT "PK_9d429ab3b7af35981fc10758b8a" PRIMARY KEY (id);
+
+
+--
+-- Name: brands PK_b0c437120b624da1034a81fc561; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.brands
+    ADD CONSTRAINT "PK_b0c437120b624da1034a81fc561" PRIMARY KEY (id);
 
 
 --
@@ -4521,6 +5092,14 @@ ALTER TABLE ONLY public.product
 
 
 --
+-- Name: product_likes PK_bfb69312fe591860533c8ed881b; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.product_likes
+    ADD CONSTRAINT "PK_bfb69312fe591860533c8ed881b" PRIMARY KEY (id);
+
+
+--
 -- Name: user PK_cace4a159ff9f2512dd42373760; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4534,6 +5113,14 @@ ALTER TABLE ONLY public."user"
 
 ALTER TABLE ONLY public.password
     ADD CONSTRAINT "PK_cbeb55948781be9257f44febfa0" PRIMARY KEY (id);
+
+
+--
+-- Name: site_reviews PK_e00e577012c59c932130d350e5e; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.site_reviews
+    ADD CONSTRAINT "PK_e00e577012c59c932130d350e5e" PRIMARY KEY (id);
 
 
 --
@@ -4553,19 +5140,11 @@ ALTER TABLE ONLY public.all_specifications
 
 
 --
--- Name: review UQ_1337f93918c70837d3cea105d39; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user UQ_8e1f623798118e629b46a9e6299; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.review
-    ADD CONSTRAINT "UQ_1337f93918c70837d3cea105d39" UNIQUE ("userId");
-
-
---
--- Name: likes UQ_cfd8e81fac09d7339a32e57d904; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.likes
-    ADD CONSTRAINT "UQ_cfd8e81fac09d7339a32e57d904" UNIQUE ("userId");
+ALTER TABLE ONLY public."user"
+    ADD CONSTRAINT "UQ_8e1f623798118e629b46a9e6299" UNIQUE (phone);
 
 
 --
@@ -4577,27 +5156,19 @@ ALTER TABLE ONLY public."user"
 
 
 --
--- Name: review FK_1337f93918c70837d3cea105d39; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: product_reviews FK_32edd80d91dff1bc19e79c8f16d; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.review
-    ADD CONSTRAINT "FK_1337f93918c70837d3cea105d39" FOREIGN KEY ("userId") REFERENCES public."user"(id) ON DELETE CASCADE;
-
-
---
--- Name: review FK_2a11d3c0ea1b2b5b1790f762b9a; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.review
-    ADD CONSTRAINT "FK_2a11d3c0ea1b2b5b1790f762b9a" FOREIGN KEY ("productId") REFERENCES public.product(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.product_reviews
+    ADD CONSTRAINT "FK_32edd80d91dff1bc19e79c8f16d" FOREIGN KEY ("productId") REFERENCES public.product(id) ON DELETE CASCADE;
 
 
 --
--- Name: likes FK_36096625e9a713d7b1f8d34eea0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: product_likes FK_358e68f6a5a5b378fa5ce624fda; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.likes
-    ADD CONSTRAINT "FK_36096625e9a713d7b1f8d34eea0" FOREIGN KEY ("productId") REFERENCES public.product(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.product_likes
+    ADD CONSTRAINT "FK_358e68f6a5a5b378fa5ce624fda" FOREIGN KEY ("productId") REFERENCES public.product(id) ON DELETE CASCADE;
 
 
 --
@@ -4605,7 +5176,7 @@ ALTER TABLE ONLY public.likes
 --
 
 ALTER TABLE ONLY public.product
-    ADD CONSTRAINT "FK_463d24f6d4905c488bd509164e6" FOREIGN KEY ("subCategoryId") REFERENCES public.sub_category(id) ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_463d24f6d4905c488bd509164e6" FOREIGN KEY ("subCategoryId") REFERENCES public.sub_category(id) ON DELETE SET NULL;
 
 
 --
@@ -4617,11 +5188,59 @@ ALTER TABLE ONLY public.sub_category
 
 
 --
--- Name: likes FK_cfd8e81fac09d7339a32e57d904; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: product_likes FK_598c40f09847df4da0d5637fea3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.likes
-    ADD CONSTRAINT "FK_cfd8e81fac09d7339a32e57d904" FOREIGN KEY ("userId") REFERENCES public."user"(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.product_likes
+    ADD CONSTRAINT "FK_598c40f09847df4da0d5637fea3" FOREIGN KEY ("userId") REFERENCES public."user"(id) ON DELETE CASCADE;
+
+
+--
+-- Name: site_reviews_dislikes FK_8d7160b9a1a477b80e7f912f4e8; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.site_reviews_dislikes
+    ADD CONSTRAINT "FK_8d7160b9a1a477b80e7f912f4e8" FOREIGN KEY ("userId") REFERENCES public."user"(id);
+
+
+--
+-- Name: addresses FK_95c93a584de49f0b0e13f753630; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.addresses
+    ADD CONSTRAINT "FK_95c93a584de49f0b0e13f753630" FOREIGN KEY ("userId") REFERENCES public."user"(id) ON DELETE CASCADE;
+
+
+--
+-- Name: product_reviews FK_964f13abf796aca25d7e5849c64; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.product_reviews
+    ADD CONSTRAINT "FK_964f13abf796aca25d7e5849c64" FOREIGN KEY ("userId") REFERENCES public."user"(id) ON DELETE CASCADE;
+
+
+--
+-- Name: site_reviews_dislikes FK_9fcfee39a5be21620522afa6d73; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.site_reviews_dislikes
+    ADD CONSTRAINT "FK_9fcfee39a5be21620522afa6d73" FOREIGN KEY ("siteReviewsId") REFERENCES public.site_reviews(id) ON DELETE CASCADE;
+
+
+--
+-- Name: site_reviews FK_afe80467f5076d808039beb1b13; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.site_reviews
+    ADD CONSTRAINT "FK_afe80467f5076d808039beb1b13" FOREIGN KEY ("userId") REFERENCES public."user"(id) ON DELETE CASCADE;
+
+
+--
+-- Name: site_reviews_likes FK_bc57c9b06d317a03e9a6a141d48; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.site_reviews_likes
+    ADD CONSTRAINT "FK_bc57c9b06d317a03e9a6a141d48" FOREIGN KEY ("userId") REFERENCES public."user"(id);
 
 
 --
@@ -4641,11 +5260,19 @@ ALTER TABLE ONLY public.all_specifications
 
 
 --
+-- Name: site_reviews_likes FK_fb98cf295abcc6348ee09f86194; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.site_reviews_likes
+    ADD CONSTRAINT "FK_fb98cf295abcc6348ee09f86194" FOREIGN KEY ("siteReviewsId") REFERENCES public.site_reviews(id) ON DELETE CASCADE;
+
+
+--
 -- Name: product FK_ff0c0301a95e517153df97f6812; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.product
-    ADD CONSTRAINT "FK_ff0c0301a95e517153df97f6812" FOREIGN KEY ("categoryId") REFERENCES public.category(id) ON DELETE CASCADE;
+    ADD CONSTRAINT "FK_ff0c0301a95e517153df97f6812" FOREIGN KEY ("categoryId") REFERENCES public.category(id) ON DELETE SET NULL;
 
 
 --

@@ -1,5 +1,5 @@
-import { User } from 'src/other/entities/user.entity'
 import { Product } from 'src/product/entities/product.entity'
+import { User } from 'src/users/entities/user.entity'
 import {
     Column, Entity, ManyToOne, PrimaryGeneratedColumn
 } from 'typeorm'
