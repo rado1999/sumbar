@@ -1,0 +1,88 @@
+1,Cases PC,http://localhost:3002/sub_category/2/1.svg,2
+2,Motherboards,http://localhost:3002/sub_category/2/2.svg,2
+3,CPU,http://localhost:3002/sub_category/2/3.svg,2
+4,RAM,http://localhost:3002/sub_category/2/4.svg,2
+5,GPU,http://localhost:3002/sub_category/2/5.svg,2
+6,HDD,http://localhost:3002/sub_category/2/6.svg,2
+7,SSD,http://localhost:3002/sub_category/2/7.svg,2
+8,Optical Drivers,http://localhost:3002/sub_category/2/8.svg,2
+9,Power Supply,http://localhost:3002/sub_category/2/9.svg,2
+10,Air and Liquid cooling,http://localhost:3002/sub_category/2/10.svg,2
+11,Thermal interfaces,http://localhost:3002/sub_category/2/11.svg,2
+12,Webcams,http://localhost:3002/sub_category/3/1.svg,3
+13,Case accessories,http://localhost:3002/sub_category/3/2.svg,3
+14,Computer mice (Wireless),http://localhost:3002/sub_category/3/3.svg,3
+15,Computer mice (Wired),http://localhost:3002/sub_category/3/4.svg,3
+16,Keyboards,http://localhost:3002/sub_category/3/5.svg,3
+17,Mouse pads,http://localhost:3002/sub_category/3/6.svg,3
+18,Headset,http://localhost:3002/sub_category/3/7.svg,3
+19,Speakers and soundbars,http://localhost:3002/sub_category/3/8.svg,3
+20,Portable speakers,http://localhost:3002/sub_category/3/9.svg,3
+21,Microphones,http://localhost:3002/sub_category/3/10.svg,3
+22,Game controllers,http://localhost:3002/sub_category/3/11.svg,3
+23,Docking stations and HUB's,http://localhost:3002/sub_category/3/12.svg,3
+24,HDD External,http://localhost:3002/sub_category/4/1.svg,4
+25,Hard drive cases and stations,http://localhost:3002/sub_category/4/2.svg,4
+26,Flash Drive (USB),http://localhost:3002/sub_category/4/3.svg,4
+27,Memory Cards (SD),http://localhost:3002/sub_category/4/4.svg,4
+28,All In One,http://localhost:3002/sub_category/5/1.svg,5
+29,Brand Computers,http://localhost:3002/sub_category/5/2.svg,5
+30,Servers,http://localhost:3002/sub_category/5/3.svg,5
+31,Laptops,http://localhost:3002/sub_category/6/1.svg,6
+32,Bags and Backpacks,http://localhost:3002/sub_category/6/2.svg,6
+33,Laptop stands,http://localhost:3002/sub_category/6/3.svg,6
+34,Batteries,http://localhost:3002/sub_category/6/4.svg,6
+35,Charging device,http://localhost:3002/sub_category/6/5.svg,6
+36,HDD (Laptop),http://localhost:3002/sub_category/6/6.svg,6
+37,Disk drives,http://localhost:3002/sub_category/6/7.svg,6
+38,RAM (Laptop),http://localhost:3002/sub_category/6/8.svg,6
+39,Screens,http://localhost:3002/sub_category/6/9.svg,6
+40,Keyboards (Laptop),http://localhost:3002/sub_category/6/10.svg,6
+41,Mobile phones,http://localhost:3002/sub_category/7/1.svg,7
+42,Tablets,http://localhost:3002/sub_category/7/2.svg,7
+43,Smart Watch,http://localhost:3002/sub_category/7/3.svg,7
+44,Phone Charges,http://localhost:3002/sub_category/7/4.svg,7
+45,Cables for phones,http://localhost:3002/sub_category/7/5.svg,7
+46,Power banks,http://localhost:3002/sub_category/7/6.svg,7
+47,DVRs for the car,http://localhost:3002/sub_category/7/7.svg,7
+48,Other mobile peripherals,http://localhost:3002/sub_category/7/8.svg,7
+49,Laser printers,http://localhost:3002/sub_category/8/1.svg,8
+50,Inkjet printers,http://localhost:3002/sub_category/8/2.svg,8
+51,Copiers,http://localhost:3002/sub_category/8/3.svg,8
+52,Phones for home and office,http://localhost:3002/sub_category/8/4.svg,8
+53,Projectors and accessories,http://localhost:3002/sub_category/8/5.svg,8
+54,Paper shredder,http://localhost:3002/sub_category/8/6.svg,8
+55,Laminator,http://localhost:3002/sub_category/8/7.svg,8
+56,Chancellery,http://localhost:3002/sub_category/8/8.svg,8
+57,Consumables,http://localhost:3002/sub_category/8/9.svg,8
+58,Routers,http://localhost:3002/sub_category/9/1.svg,9
+59,Wireless amplifiers,http://localhost:3002/sub_category/9/2.svg,9
+60,Network adapters and cards,http://localhost:3002/sub_category/9/3.svg,9
+61,"Switches, converters and more",http://localhost:3002/sub_category/9/4.svg,9
+62,Modem 3G & 4G,http://localhost:3002/sub_category/9/5.svg,9
+63,Network cables,http://localhost:3002/sub_category/9/6.svg,9
+64,Tools and testers,http://localhost:3002/sub_category/9/7.svg,9
+65,CCTV Cameras,http://localhost:3002/sub_category/10/1.svg,10
+66,CCTV Recorders (NVR / DVR / XVR),http://localhost:3002/sub_category/10/2.svg,10
+67,POS computer and others,http://localhost:3002/sub_category/11/1.svg,11
+68,Barcode and receipt printers,http://localhost:3002/sub_category/11/2.svg,11
+69,Barcode scanners,http://localhost:3002/sub_category/11/3.svg,11
+70,Cash counters and drawers,http://localhost:3002/sub_category/11/4.svg,11
+71,Scales,http://localhost:3002/sub_category/11/5.svg,11
+72,Consumables (POS),http://localhost:3002/sub_category/11/6.svg,11
+73,UPS,http://localhost:3002/sub_category/12/1.svg,12
+74,Surge Protectors,http://localhost:3002/sub_category/12/2.svg,12
+75,UPS batteries,http://localhost:3002/sub_category/12/3.svg,12
+76,Other for UPS,http://localhost:3002/sub_category/12/4.svg,12
+77,Computer chairs,http://localhost:3002/sub_category/13/1.svg,13
+78,Computer tables,http://localhost:3002/sub_category/13/2.svg,13
+79,Home attributes,http://localhost:3002/sub_category/14/1.svg,14
+80,Tuners,http://localhost:3002/sub_category/14/2.svg,14
+81,Vacuum cleaners,http://localhost:3002/sub_category/14/3.svg,14
+82,Lithium batteries,http://localhost:3002/sub_category/15/1.svg,15
+83,Cable,http://localhost:3002/sub_category/15/2.svg,15
+84,Adapters and converters,http://localhost:3002/sub_category/15/3.svg,15
+85,Splitters,http://localhost:3002/sub_category/15/4.svg,15
+86,Tools,http://localhost:3002/sub_category/15/5.svg,15
+87,Software,http://localhost:3002/sub_category/15/6.svg,15
+88,Other,http://localhost:3002/sub_category/15/7.svg,15
