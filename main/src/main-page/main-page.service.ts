@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { WhichProductDto } from 'src/menu/dto/which-product.dto'
 import { Product } from 'src/product/entities/product.entity'
 import { In, Repository } from 'typeorm'
 import { Options } from './dto/options.dto'
@@ -54,18 +55,13 @@ export class MainPageService {
     }
 
     // by category 'motherboards', 'gpu', 'mobile peripherals' and etc.
-    async getProducts(): Promise<Product[]> {
+    async getProducts(which: WhichProductDto): Promise<Product[]> {
         return await this.productRepo.query(`
-            WITH my_result AS (
-                SELECT *, ROW_NUMBER()
-                OVER(PARTITION BY "subCategoryId") AS row_number
-                FROM product
-            )
-            SELECT * FROM my_result
-            WHERE "subCategoryId" IN ($1, $2, $3, $4, $5, $6)
-            AND row_number <= $7
-            ORDER BY "subCategoryId" ASC
-        `, [56, 2, 5, 48, 18, 20, 4])
+            select *
+            from product
+            join sub_category on sub_category."id" = product."subCategoryId"
+            where product."categoryId" = $1 and product."subCategoryId" = $2
+        `, [which.category, which.subCategory])
     }
 
     async getBrands(): Promise<Brands[]> {

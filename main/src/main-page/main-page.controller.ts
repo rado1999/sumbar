@@ -1,4 +1,5 @@
 import { Controller, Get, Query } from '@nestjs/common'
+import { WhichProductDto } from 'src/menu/dto/which-product.dto'
 import { Product } from 'src/product/entities/product.entity'
 import { Options } from './dto/options.dto'
 import { Result } from './dto/result.dto'
@@ -40,8 +41,8 @@ export class MainPageController {
     }
 
     @Get('categories')
-    async getProducts(): Promise<Product[]> {
-        return await this.mainPageService.getProducts()
+    async getProducts(@Query() which: WhichProductDto): Promise<Product[]> {
+        return await this.mainPageService.getProducts(which)
     }
 
     @Get('brands')
