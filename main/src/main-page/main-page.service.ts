@@ -57,10 +57,14 @@ export class MainPageService {
     // by category 'motherboards', 'gpu', 'mobile peripherals' and etc.
     async getProducts(which: WhichProductDto): Promise<Product[]> {
         return await this.productRepo.query(`
-            select *
-            from product
-            join sub_category on sub_category."id" = product."subCategoryId"
-            where product."categoryId" = $1 and product."subCategoryId" = $2
+            SELECT product."id", product."imageUrl", product.title,
+            company, "companyImage", model, "mainDescription",
+            price, product."categoryId", "subCategoryId",
+            sub_category.title AS "mainTitle"
+            FROM product
+            JOIN sub_category ON sub_category."id" = product."subCategoryId"
+            WHERE product."categoryId" = $1 AND product."subCategoryId" = $2
+            LIMIT 4
         `, [which.category, which.subCategory])
     }
 
