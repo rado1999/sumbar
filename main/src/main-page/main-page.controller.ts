@@ -9,18 +9,18 @@ import { MainPageService } from './main-page.service'
 export class MainPageController {
     constructor(
         private readonly mainPageService: MainPageService
-    ) { }
+    ) {}
 
     @Get('big-images')
     getBigImages(): string[] {
         return [
-            'http://localhost:3002/big_images/1.jpg',
-            'http://localhost:3002/big_images/2.jpg',
-            'http://localhost:3002/big_images/3.jpg',
-            'http://localhost:3002/big_images/4.jpg',
-            'http://localhost:3002/big_images/5.jpg',
-            'http://localhost:3002/big_images/6.jpg',
-            'http://localhost:3002/big_images/7.jpg',
+            'http://95.85.127.250:3002/big_images/1.jpg',
+            'http://95.85.127.250:3002/big_images/2.jpg',
+            'http://95.85.127.250:3002/big_images/3.jpg',
+            'http://95.85.127.250:3002/big_images/4.jpg',
+            'http://95.85.127.250:3002/big_images/5.jpg',
+            'http://95.85.127.250:3002/big_images/6.jpg',
+            'http://95.85.127.250:3002/big_images/7.jpg',
         ]
     }
 

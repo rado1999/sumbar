@@ -1,23 +1,23 @@
 copy category (id, title, "imageUrl")
-from '/home/dova/Документы/category.csv'
+from '/home/rado/Codes/js_projects/sumbar/main/data/category.csv'
 with csv;
 
 copy sub_category (id, title, "imageUrl", "categoryId")
-from '/home/dova/Документы/sub_category.csv'
+from '/home/rado/Codes/js_projects/sumbar/main/data/sub_category.csv'
 with csv;
 
 copy product (id, "imageUrl", title, company, "companyImage", model, "mainDescription", price, "categoryId", "subCategoryId")
-from '/home/dova/Документы/products.csv'
+from '/home/rado/Codes/js_projects/sumbar/main/data/products.csv'
 with csv;
 
 copy all_specifications (id, specification, "productId")
-from '/home/dova/Документы/all_specifications.csv'
+from '/home/rado/Codes/js_projects/sumbar/main/data/all_specifications.csv'
 csv delimiter ',' quote '"' escape '\';
 
 copy description (id, "desc", "productId")
-from '/home/dova/Документы/descriptions.csv'
+from '/home/rado/Codes/js_projects/sumbar/main/data/descriptions.csv'
 with csv;
 
 copy brands (id, company, logo)
-from '/home/dova/Документы/brands.csv'
+from '/home/rado/Codes/js_projects/sumbar/main/data/brands.csv'
 with csv;

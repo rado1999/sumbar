@@ -16,6 +16,9 @@ export class SiteReviews {
     @Column()
     review: string
 
+    @Column()
+    status: string
+
     @ManyToOne(
         () => User,
         user => user.siteReviews,

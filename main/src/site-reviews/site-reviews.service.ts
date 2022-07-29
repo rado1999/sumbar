@@ -25,13 +25,20 @@ export class SiteReviewsService {
     ): Promise<void> {
         const review = this.siteReviewsRepo.create(data)
         review.user = req.userId
+
+        let status: string
+        if (review.stars === 1 || review.stars === 2) status = 'bad'
+        else if (review.stars === 3 || review.stars === 4) status = 'good'
+        else status = 'excellent'
+        review.status = status
+
         await this.siteReviewsRepo.save(review)
     }
 
     async getSiteReviews(): Promise<[SiteReviews[], number]> {
         const count = await this.siteReviewsRepo.count()
         const entities = await this.siteReviewsRepo.query(`
-            SELECT site_reviews.id, stars, "User".name, review
+            SELECT site_reviews.id, stars, "User".name, review, status
             FROM site_reviews
             JOIN "user" "User" ON "User".id = site_reviews."userId"
             ORDER BY site_reviews.id DESC
@@ -43,7 +50,8 @@ export class SiteReviewsService {
 
     async getAllReviews(): Promise<SiteReviews[]> {
         return await this.siteReviewsRepo.query(`
-            SELECT site_reviews.id, stars, "User".name, review, likes, dislikes
+            SELECT site_reviews.id, stars, "User".name,
+            review, status, likes, dislikes
             FROM site_reviews
             JOIN "user" "User" ON "User".id = site_reviews."userId"
             JOIN (
