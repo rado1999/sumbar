@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
 export class Report {
@@ -8,11 +8,8 @@ export class Report {
     @Column()
     username: string
 
-    @Column({ nullable: true })
-    phone: string
-
-    @Column({ nullable: true })
-    email: string
+    @Column({ nullable: false })
+    emailOrPhone: string
 
     @Column()
     message: string

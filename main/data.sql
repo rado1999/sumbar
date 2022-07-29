@@ -351,8 +351,7 @@ ALTER SEQUENCE public.product_reviews_id_seq OWNED BY public.product_reviews.id;
 CREATE TABLE public.report (
     id integer NOT NULL,
     username character varying NOT NULL,
-    phone character varying,
-    email character varying,
+    "emailOrPhone" character varying NOT NULL,
     message character varying NOT NULL
 );
 
@@ -4701,7 +4700,7 @@ COPY public.product_reviews (id, text, stars, "productId", "userId") FROM stdin;
 -- Data for Name: report; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.report (id, username, phone, email, message) FROM stdin;
+COPY public.report (id, username, "emailOrPhone", message) FROM stdin;
 \.
 
 

@@ -1,14 +1,11 @@
-import { IsEmail, IsNotEmpty, IsPhoneNumber } from 'class-validator'
+import { IsNotEmpty } from 'class-validator'
 
 export class CreateReportDto {
     @IsNotEmpty()
     username: string
 
-    @IsPhoneNumber('TM')
-    phone: string
-
-    @IsEmail()
-    email: string
+    @IsNotEmpty()
+    email_or_phone: string
 
     @IsNotEmpty()
     message: string
