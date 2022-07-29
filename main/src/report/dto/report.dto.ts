@@ -5,7 +5,7 @@ export class CreateReportDto {
     username: string
 
     @IsNotEmpty()
-    email_or_phone: string
+    emailOrPhone: string
 
     @IsNotEmpty()
     message: string
