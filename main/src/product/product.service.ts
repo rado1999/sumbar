@@ -124,7 +124,7 @@ export class ProductService {
         await this.productLikesRepo.save(like)
     }
 
-    async dislike(id: any, req: any): Promise<DeleteResult> {
+    async unlike(id: any, req: any): Promise<DeleteResult> {
         return await this.productLikesRepo.delete({
             product: id,
             user: req.userId

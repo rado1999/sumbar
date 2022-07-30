@@ -26,14 +26,15 @@ app.post('/', async (req, res) => {
 
     const password = Math.random().toString().slice(2, 8)
 
-    const result = await savePassword(phone, password)
-    if (!result) return res.status(400).send(errorMessage(
-        'This phone number is already used'
-    ))
+    // const result = await savePassword(phone, password)
+    await savePassword(phone, password)
+    // if (!result) return res.status(400).send(errorMessage(
+    //     'This phone number is already used'
+    // ))
 
     // await sendMessage(phone, password)
 
-    return res.status(201).send()
+    return res.status(201).send({ password })
 })
 
 app.post('/resend', async (req, res) => {

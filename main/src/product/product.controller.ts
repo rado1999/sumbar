@@ -1,5 +1,6 @@
 import {
-    Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, Req, UseGuards
+    Body, Controller, Delete, Get, Param,
+    ParseIntPipe, Post, Query, Req, UseGuards
 } from '@nestjs/common'
 import { AuthGuard } from 'src/auth/auth.guard'
 import { Options } from './dto/options.dto'
@@ -66,10 +67,10 @@ export class ProductController {
 
     @UseGuards(AuthGuard)
     @Delete('like/:id')
-    async dislike(
+    async unlike(
         @Param('id', ParseIntPipe) id: number,
         @Req() req: any
     ): Promise<DeleteResult> {
-        return await this.productService.dislike(id, req)
+        return await this.productService.unlike(id, req)
     }
 }
