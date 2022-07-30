@@ -25,7 +25,7 @@ export class UsersController {
         return await this.usersService.createUser(user)
     }
 
-    @Post('refresh')
+    @Get('refresh')
     refreshToken(@Req() req: Request): string {
         return this.usersService.refreshToken(req)
     }

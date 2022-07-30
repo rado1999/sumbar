@@ -46,7 +46,6 @@ export async function confirmPassword(phone, pass) {
 
 // check is user registered or not
 export async function checkUser(phone) {
-    phone = '+993' + phone
     const result = await pool.query(
         'SELECT * FROM "user" "User" WHERE phone = $1', [phone]
     )
