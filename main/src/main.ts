@@ -9,7 +9,7 @@ async function bootstrap() {
     app.useStaticAssets(join(__dirname, '..', 'public'))
     app.enableCors()
     app.useGlobalPipes(new ValidationPipe({ transform: true }))
-    await app.listen(3002, '192.168.31.202')
+    await app.listen(3002, '95.85.127.250')
 }
 
 bootstrap()

@@ -71,9 +71,8 @@ app.post('/confirm', async (req, res) => {
     // if user doesn't exist, then registrate him
     if (!result_) return res.sendStatus(200)
     
-    console.log(result)
     // else, just give him/her the tokens
-    return res.status(200).send({ id: result_.id })
+    return res.status(201).send({ id: result_.id })
 })
 
-app.listen(3001, 'localhost')
+app.listen(3001, '95.85.127.250')
