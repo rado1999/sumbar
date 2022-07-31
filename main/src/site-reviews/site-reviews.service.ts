@@ -35,7 +35,7 @@ export class SiteReviewsService {
         await this.siteReviewsRepo.save(review)
     }
 
-    async getSiteReviews(): Promise<[SiteReviews[], number]> {
+    async getSiteReviews(): Promise<[SiteReviews[], number, number]> {
         const count = await this.siteReviewsRepo.count()
         const entities = await this.siteReviewsRepo.query(`
             SELECT site_reviews.id, stars, "User".name, review, status
@@ -44,28 +44,49 @@ export class SiteReviewsService {
             ORDER BY site_reviews.id DESC
             LIMIT 5
         `)
+        const rating = await this.siteReviewsRepo.query(`
+            SELECT (
+                SELECT SUM(stars) * 1.0
+                FROM site_reviews
+            ) / (
+                SELECT COUNT(stars) * 1.0
+            FROM site_reviews
+            ) AS my_result
+        `)
 
-        return [entities, count]
+        return [entities, count, rating]
     }
 
-    async getAllReviews(): Promise<SiteReviews[]> {
-        return await this.siteReviewsRepo.query(`
+    async getAllReviews(): Promise<[SiteReviews[], number, number]> {
+        const count = await this.siteReviewsRepo.count()
+        const entities = await this.siteReviewsRepo.query(`
             SELECT site_reviews.id, stars, "User".name,
             review, status, likes, dislikes
             FROM site_reviews
             JOIN "user" "User" ON "User".id = site_reviews."userId"
-            JOIN (
+            LEFT OUTER JOIN (
                 SELECT "siteReviewsId", COUNT(*) AS likes
                 FROM site_reviews_likes
                 GROUP BY "siteReviewsId"
             ) AS review_likes ON review_likes."siteReviewsId" = site_reviews.id
-            JOIN (
+            LEFT OUTER JOIN (
                 SELECT "siteReviewsId", COUNT(*) AS dislikes
                 FROM site_reviews_dislikes
                 GROUP BY "siteReviewsId"
             ) AS review_dislikes ON review_dislikes."siteReviewsId" = site_reviews.id
             ORDER BY site_reviews.id DESC
         `)
+        const rating = await this.siteReviewsRepo.query(`
+            SELECT (
+                SELECT SUM(stars) * 1.0
+                FROM site_reviews
+            ) / (
+                SELECT COUNT(stars) * 1.0
+            FROM site_reviews
+            ) AS my_result
+        `)
+
+        return [entities, count, parseFloat(rating[0].my_result)]
     }
 
     async createSiteReviewLike(id: any, req: any): Promise<void> {
