@@ -4,7 +4,7 @@ import {
 import { Request } from 'express'
 import { JwtService } from '@nestjs/jwt'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository, UpdateResult } from 'typeorm'
+import { DeleteResult, Repository, UpdateResult } from 'typeorm'
 import { Edit, Login, UserDto } from './dto/user.dto'
 import { User } from './entities/user.entity'
 import { config } from 'dotenv'
@@ -129,6 +129,13 @@ export class UsersService {
     async getAddresses(req: any): Promise<Addresses[]> {
         return await this.addressesRepo.find({
             where: { user: { id: req.userId } }
+        })
+    }
+
+    async deleteAddress(id: number, req: any): Promise<DeleteResult> {
+        return await this.addressesRepo.delete({
+            id,
+            user: req.userId
         })
     }
 

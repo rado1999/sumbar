@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Req, UseGuards } from '@nestjs/common'
 import { Edit, Login, UserDto } from './dto/user.dto'
 import { UsersService } from './users.service'
 import { Request } from 'express'
@@ -7,7 +7,7 @@ import { ProductReviews } from 'src/product/entities/product-reviews.entity'
 import { Addresses } from './entities/addresses.entity'
 import { AuthGuard } from 'src/auth/auth.guard'
 import { AddressDto } from './dto/address.dto'
-import { UpdateResult } from 'typeorm'
+import { DeleteResult, UpdateResult } from 'typeorm'
 
 @Controller('users')
 export class UsersController {
@@ -56,6 +56,15 @@ export class UsersController {
     @Get('address')
     async getAddresses(@Req() req: any): Promise<Addresses[]> {
         return await this.usersService.getAddresses(req)
+    }
+
+    @UseGuards(AuthGuard)
+    @Delete('address/:id')
+    async deleteAddress(
+        @Param('id', ParseIntPipe) id: number,
+        @Req() req: any
+    ): Promise<DeleteResult> {
+        return await this.usersService.deleteAddress(id, req)
     }
 
     @UseGuards(AuthGuard)
