@@ -32,7 +32,7 @@ export class SiteReviewsController {
         return await this.siteReviewsService.getAllReviews()
     }
 
-    // @UseGuards(AuthGuard)
+    @UseGuards(AuthGuard)
     @Post('like/:id')
     async createSiteReviewLike(
         @Param('id', ParseIntPipe) id: number,
@@ -41,7 +41,7 @@ export class SiteReviewsController {
         return await this.siteReviewsService.createSiteReviewLike(id, req)
     }
 
-    // @UseGuards(AuthGuard)
+    @UseGuards(AuthGuard)
     @Post('dislike/:id')
     async createSiteReviewDislike(
         @Param('id', ParseIntPipe) id: number,
@@ -50,7 +50,7 @@ export class SiteReviewsController {
         return await this.siteReviewsService.createSiteReviewDislike(id, req)
     }
 
-    // @UseGuards(AuthGuard)
+    @UseGuards(AuthGuard)
     @Delete('like/:id')
     async removeSiteReviewLike(
         @Param('id', ParseIntPipe) id: number,
@@ -59,7 +59,7 @@ export class SiteReviewsController {
         return await this.siteReviewsService.removeSiteReviewLike(id, req)
     }
 
-    // @UseGuards(AuthGuard)
+    @UseGuards(AuthGuard)
     @Delete('dislike/:id')
     async removeSiteReviewDislike(
         @Param('id', ParseIntPipe) id: number,
