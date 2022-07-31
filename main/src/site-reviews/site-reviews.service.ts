@@ -35,7 +35,7 @@ export class SiteReviewsService {
         await this.siteReviewsRepo.save(review)
     }
 
-    async getSiteReviews(): Promise<[SiteReviews[], number, number]> {
+    async getSiteReviews(): Promise<[SiteReviews[], number, string]> {
         const count = await this.siteReviewsRepo.count()
         const entities = await this.siteReviewsRepo.query(`
             SELECT site_reviews.id, stars, "User".name, review, status
@@ -54,10 +54,10 @@ export class SiteReviewsService {
             ) AS rating
         `)
 
-        return [entities, count, parseFloat(rating[0].rating)]
+        return [entities, count, parseFloat(rating[0].rating).toFixed(1)]
     }
 
-    async getAllReviews(): Promise<[SiteReviews[], number, number]> {
+    async getAllReviews(): Promise<[SiteReviews[], number, string]> {
         const count = await this.siteReviewsRepo.count()
         const entities = await this.siteReviewsRepo.query(`
             SELECT site_reviews.id, stars, "User".name,
@@ -86,7 +86,7 @@ export class SiteReviewsService {
             ) AS rating
         `)
 
-        return [entities, count, parseFloat(rating[0].rating)]
+        return [entities, count, parseFloat(rating[0].rating).toFixed(1)]
     }
 
     async createSiteReviewLike(id: any, req: any): Promise<void> {

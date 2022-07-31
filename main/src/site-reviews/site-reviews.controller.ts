@@ -23,7 +23,7 @@ export class SiteReviewsController {
     }
 
     @Get()
-    async getSiteReviews(): Promise<[SiteReviews[], number, number]> {
+    async getSiteReviews(): Promise<[SiteReviews[], number, string]> {
         return await this.siteReviewsService.getSiteReviews()
     }
 
