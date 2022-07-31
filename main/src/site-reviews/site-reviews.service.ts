@@ -51,7 +51,7 @@ export class SiteReviewsService {
             ) / (
                 SELECT COUNT(stars) * 1.0
             FROM site_reviews
-            ) AS my_result
+            ) AS rating
         `)
 
         return [entities, count, rating]
@@ -83,7 +83,7 @@ export class SiteReviewsService {
             ) / (
                 SELECT COUNT(stars) * 1.0
             FROM site_reviews
-            ) AS my_result
+            ) AS rating
         `)
 
         return [entities, count, parseFloat(rating[0].my_result)]
