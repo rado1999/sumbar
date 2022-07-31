@@ -54,7 +54,7 @@ export class SiteReviewsService {
             ) AS rating
         `)
 
-        return [entities, count, parseFloat(rating[0].my_result)]
+        return [entities, count, parseFloat(rating[0].rating)]
     }
 
     async getAllReviews(): Promise<[SiteReviews[], number, number]> {
@@ -86,7 +86,7 @@ export class SiteReviewsService {
             ) AS rating
         `)
 
-        return [entities, count, parseFloat(rating[0].my_result)]
+        return [entities, count, parseFloat(rating[0].rating)]
     }
 
     async createSiteReviewLike(id: any, req: any): Promise<void> {
