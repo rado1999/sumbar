@@ -50,6 +50,10 @@ export class UsersService {
         return this.createTokens(newUser.id)
     }
 
+    async getUser(req: any): Promise<User> {
+        return await this.usersRepo.findOne({ where: { id: req.userId } })
+    }
+
     private createTokens(id: number): any {
         const accessToken = this.createToken(
             process.env.RANDOM_INFO,

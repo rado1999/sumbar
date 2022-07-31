@@ -8,6 +8,7 @@ import { Addresses } from './entities/addresses.entity'
 import { AuthGuard } from 'src/auth/auth.guard'
 import { AddressDto } from './dto/address.dto'
 import { DeleteResult, UpdateResult } from 'typeorm'
+import { User } from './entities/user.entity'
 
 @Controller('users')
 export class UsersController {
@@ -23,6 +24,12 @@ export class UsersController {
     @Post('create')
     async createUser(@Body() user: UserDto): Promise<any> {
         return await this.usersService.createUser(user)
+    }
+
+    @UseGuards(AuthGuard)
+    @Get()
+    async getUser(@Req() req: any): Promise<User> {
+        return await this.usersService.getUser(req)
     }
 
     @Get('refresh')
