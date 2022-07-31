@@ -2,14 +2,16 @@ import {
     BadRequestException, Injectable, NotFoundException
 } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { DeleteResult, Repository } from 'typeorm'
+import { DeleteResult, In, Repository } from 'typeorm'
 import { Options } from './dto/options.dto'
 import { Meta, Result } from './dto/result.dto'
-import { ProductCreateDto } from './dto/product.dto'
+import { BuyProductDto, ProductCreateDto } from './dto/product.dto'
 import { ReviewDto } from './dto/review.dto'
 import { Product } from './entities/product.entity'
 import { ProductReviews } from './entities/product-reviews.entity'
 import { ProductLikes } from './entities/likes.entity'
+import { History } from './entities/history.entity'
+import { User } from 'src/users/entities/user.entity'
 
 @Injectable()
 export class ProductService {
@@ -19,7 +21,11 @@ export class ProductService {
         @InjectRepository(ProductLikes)
         private readonly productLikesRepo: Repository<ProductLikes>,
         @InjectRepository(ProductReviews)
-        private readonly productReviewRepo: Repository<ProductReviews>
+        private readonly productReviewRepo: Repository<ProductReviews>,
+        @InjectRepository(History)
+        private readonly historyRepo: Repository<History>,
+        @InjectRepository(User)
+        private readonly userRepo: Repository<User>
     ) {}
 
     async getProducts(options: Options): Promise<Result> {
@@ -129,5 +135,17 @@ export class ProductService {
             product: id,
             user: req.userId
         })
+    }
+
+    async buyProduct(buy: BuyProductDto): Promise<void> {
+        const { ids, phone, ...data } = buy
+        const user = await this.userRepo.findOne({ where: { phone } })
+        await this.productRepo.delete({
+            id: In([...ids])
+        })
+        const history = this.historyRepo.create(data)
+        const num: any = user.id
+        history.user = num
+        await this.historyRepo.save(history)
     }
 }

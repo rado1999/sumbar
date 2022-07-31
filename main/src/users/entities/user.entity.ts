@@ -1,3 +1,4 @@
+import { History } from 'src/product/entities/history.entity'
 import { ProductReviews } from 'src/product/entities/product-reviews.entity'
 import {
     SiteReviewsDislikes
@@ -47,4 +48,7 @@ export class User {
 
     @OneToMany(() => Addresses, address => address.user)
     address: Addresses
+
+    @OneToMany(() => History, history => history.user)
+    history: History
 }

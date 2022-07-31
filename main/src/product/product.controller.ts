@@ -5,7 +5,7 @@ import {
 import { AuthGuard } from 'src/auth/auth.guard'
 import { Options } from './dto/options.dto'
 import { Result } from './dto/result.dto'
-import { ProductCreateDto } from './dto/product.dto'
+import { BuyProductDto, ProductCreateDto } from './dto/product.dto'
 import { ReviewDto } from './dto/review.dto'
 import { Product } from './entities/product.entity'
 import { ProductReviews } from './entities/product-reviews.entity'
@@ -72,5 +72,10 @@ export class ProductController {
         @Req() req: any
     ): Promise<DeleteResult> {
         return await this.productService.unlike(id, req)
+    }
+
+    @Post('buy')
+    async buyProduct(@Body() buy: BuyProductDto): Promise<void> {
+        return this.productService.buyProduct(buy)
     }
 }

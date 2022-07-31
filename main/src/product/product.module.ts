@@ -8,6 +8,8 @@ import { Product } from './entities/product.entity'
 import { ProductReviews } from './entities/product-reviews.entity'
 import { ProductController } from './product.controller'
 import { ProductService } from './product.service'
+import { History } from './entities/history.entity'
+import { User } from 'src/users/entities/user.entity'
 
 @Module({
     imports: [
@@ -17,7 +19,9 @@ import { ProductService } from './product.service'
             AllSpecifications,
             Description,
             ProductReviews,
-            ProductLikes
+            ProductLikes,
+            History,
+            User
         ]
         )
     ],

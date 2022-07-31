@@ -1,5 +1,5 @@
 import {
-    ArrayMaxSize, IsInt, IsNotEmpty, IsOptional, IsPositive
+    ArrayMaxSize, IsArray, isInt, IsInt, IsNotEmpty, IsNumber, IsOptional, IsPositive
 } from 'class-validator'
 
 
@@ -36,4 +36,25 @@ export class ProductCreateDto {
     @IsPositive()
     @IsInt()
     subCategory: any
+}
+
+export class BuyProductDto {
+    @IsPositive({ each: true })
+    @IsInt({ each: true })
+    @IsArray()
+    ids: number[]
+
+    @IsNotEmpty()
+    phone: string
+
+    @IsNumber()
+    @IsPositive()
+    total: number
+
+    @IsNumber()
+    @IsPositive()
+    payment: number
+
+    @IsOptional()
+    status: string
 }
