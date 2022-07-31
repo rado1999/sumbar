@@ -54,7 +54,7 @@ export class SiteReviewsService {
             ) AS rating
         `)
 
-        return [entities, count, rating]
+        return [entities, count, parseFloat(rating[0].my_result)]
     }
 
     async getAllReviews(): Promise<[SiteReviews[], number, number]> {
