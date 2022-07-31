@@ -148,4 +148,10 @@ export class ProductService {
         history.user = num
         await this.historyRepo.save(history)
     }
+
+    async getHistory(req: any): Promise<History[]> {
+        return await this.historyRepo.find({
+            where: { user: { id: req.userId } }
+        })
+    }
 }

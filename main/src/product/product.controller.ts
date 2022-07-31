@@ -11,6 +11,7 @@ import { Product } from './entities/product.entity'
 import { ProductReviews } from './entities/product-reviews.entity'
 import { ProductService } from './product.service'
 import { DeleteResult } from 'typeorm'
+import { History } from './entities/history.entity'
 
 @Controller('product')
 export class ProductController {
@@ -77,5 +78,11 @@ export class ProductController {
     @Post('buy')
     async buyProduct(@Body() buy: BuyProductDto): Promise<void> {
         return this.productService.buyProduct(buy)
+    }
+
+    @UseGuards(AuthGuard)
+    @Get('history')
+    async getHistory(@Req() req: any): Promise<History[]> {
+        return await this.productService.getHistory(req)
     }
 }
