@@ -1,51 +1,65 @@
 copy category (id, title, "imageUrl")
 from '/home/sumbar/main/data/category.csv'
 with csv;
+SELECT setval('category_id_seq', 16);
 
 copy sub_category (id, title, "imageUrl", "categoryId")
 from '/home/sumbar/main/data/sub_category.csv'
 with csv;
+SELECT setval('sub_category_id_seq', 89);
 
 copy product (id, "imageUrl", title, company, "companyImage", model, "mainDescription", price, "categoryId", "subCategoryId")
 from '/home/sumbar/main/data/products.csv'
 with csv;
+SELECT setval('product_id_seq', 1310);
 
 copy all_specifications (id, specification, "productId")
 from '/home/sumbar/main/data/all_specifications.csv'
 csv delimiter ',' quote '"' escape '\';
+SELECT setval('people_id_seq', 999);
+SELECT setval('all_specifications_id_seq', 1310);
 
 copy description (id, "desc", "productId")
 from '/home/sumbar/main/data/descriptions.csv'
 with csv;
+SELECT setval('description_id_seq', 1310);
 
 copy brands (id, company, logo)
 from '/home/sumbar/main/data/brands.csv'
 with csv;
+SELECT setval('brands_id_seq', 130);
 
 copy "user" (id, email, phone, name)
 from '/home/sumbar/main/data/users.csv'
 with csv;
+SELECT setval('user_id_seq', 101);
 
 copy site_reviews (id, stars, review, status, "userId")
 from '/home/sumbar/main/data/site_reviews.csv'
 with csv;
+SELECT setval('site_reviews_id_seq', 101);
 
 copy site_reviews_likes (id, "siteReviewsId", "userId")
 from '/home/sumbar/main/data/site_reviews_likes.csv'
 with csv;
+SELECT setval('site_reviews_likes_id_seq', 542);
 
 copy site_reviews_dislikes (id, "siteReviewsId", "userId")
 from '/home/sumbar/main/data/site_reviews_dislikes.csv'
 with csv;
+SELECT setval('site_reviews_dislikes_id_seq', 542);
 
 copy product_reviews (id, text, stars, "productId", "userId")
 from '/home/sumbar/main/data/product_reviews.csv'
 with csv;
+SELECT setval('product_reviews_id_seq', 263);
 
 copy product_likes (id, "userId", "productId")
 from '/home/sumbar/main/data/product_likes.csv'
 with csv;
+SELECT setval('product_likes_id_seq', 389);
 
 copy addresses (id, address, "userId")
 from '/home/sumbar/main/data/addresses.csv'
 with csv;
+SELECT setval('addresses_id_seq', 101);
