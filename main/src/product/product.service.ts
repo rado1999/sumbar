@@ -161,6 +161,7 @@ export class ProductService {
             SELECT id, "imageUrl", title
             FROM product
             WHERE title @@ to_tsquery('simple', '${query.word}:*')
+            LIMIT 7
         `)
     }
 }
