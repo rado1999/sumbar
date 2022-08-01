@@ -12,6 +12,7 @@ import { ProductReviews } from './entities/product-reviews.entity'
 import { ProductLikes } from './entities/likes.entity'
 import { History } from './entities/history.entity'
 import { User } from 'src/users/entities/user.entity'
+import { Search } from './dto/search.dto'
 
 @Injectable()
 export class ProductService {
@@ -153,5 +154,13 @@ export class ProductService {
         return await this.historyRepo.find({
             where: { user: { id: req.userId } }
         })
+    }
+
+    async search(query: Search): Promise<Product[]> {
+        return await this.productRepo.query(`
+            SELECT id, "imageUrl", title
+            FROM product
+            WHERE title @@ to_tsquery('simple', '${query.word}:*')
+        `)
     }
 }

@@ -12,6 +12,7 @@ import { ProductReviews } from './entities/product-reviews.entity'
 import { ProductService } from './product.service'
 import { DeleteResult } from 'typeorm'
 import { History } from './entities/history.entity'
+import { Search } from './dto/search.dto'
 
 @Controller('product')
 export class ProductController {
@@ -84,5 +85,10 @@ export class ProductController {
     @Get('history')
     async getHistory(@Req() req: any): Promise<History[]> {
         return await this.productService.getHistory(req)
+    }
+
+    @Get('search')
+    async search(@Query() query: Search): Promise<Product[]> {
+        return await this.productService.search(query)
     }
 }
