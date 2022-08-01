@@ -5,7 +5,9 @@ import { join } from 'path'
 import { AppModule } from './app.module'
 
 async function bootstrap() {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule)
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+        logger: false
+    })
     app.useStaticAssets(join(__dirname, '..', 'public'))
     app.enableCors()
     app.useGlobalPipes(new ValidationPipe({ transform: true }))
