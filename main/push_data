@@ -16,7 +16,6 @@ SELECT setval('product_id_seq', 1310);
 copy all_specifications (id, specification, "productId")
 from '/home/sumbar/main/data/all_specifications.csv'
 csv delimiter ',' quote '"' escape '\';
-SELECT setval('people_id_seq', 999);
 SELECT setval('all_specifications_id_seq', 1310);
 
 copy description (id, "desc", "productId")
