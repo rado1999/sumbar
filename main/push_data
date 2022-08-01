@@ -21,3 +21,31 @@ with csv;
 copy brands (id, company, logo)
 from '/home/sumbar/main/data/brands.csv'
 with csv;
+
+copy "user" (id, email, phone, name)
+from '/home/sumbar/main/data/users.csv'
+with csv;
+
+copy site_reviews (id, stars, review, status, "userId")
+from '/home/sumbar/main/data/site_reviews.csv'
+with csv;
+
+copy site_reviews_likes (id, "siteReviewsId", "userId")
+from '/home/sumbar/main/data/site_reviews_likes.csv'
+with csv;
+
+copy site_reviews_dislikes (id, "siteReviewsId", "userId")
+from '/home/sumbar/main/data/site_reviews_dislikes.csv'
+with csv;
+
+copy product_reviews (id, text, stars, "productId", "userId")
+from '/home/sumbar/main/data/product_reviews.csv'
+with csv;
+
+copy product_likes (id, "userId", "productId")
+from '/home/sumbar/main/data/product_likes.csv'
+with csv;
+
+copy addresses (id, address, "userId")
+from '/home/sumbar/main/data/addresses.csv'
+with csv;
