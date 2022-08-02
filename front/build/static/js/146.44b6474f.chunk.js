@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksumbar=self.webpackChunksumbar||[]).push([[146],{8146:function(e,s,u){u.r(s);u(2791);var n=u(184);s.default=function(){return(0,n.jsx)("div",{className:"w-3/4 mt-5",children:"Denesdirmek"})}}}]);
+//# sourceMappingURL=146.44b6474f.chunk.js.map

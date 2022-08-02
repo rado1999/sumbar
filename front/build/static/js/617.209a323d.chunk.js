@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksumbar=self.webpackChunksumbar||[]).push([[617],{8617:function(e,t,u){u.d(t,{HeX:function(){return n}});var a=u(9983);function n(e){return(0,a.w_)({tag:"svg",attr:{viewBox:"0 0 20 20",fill:"currentColor"},child:[{tag:"path",attr:{fillRule:"evenodd",d:"M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z",clipRule:"evenodd"}}]})(e)}}}]);
+//# sourceMappingURL=617.209a323d.chunk.js.map
