@@ -116,7 +116,8 @@ export class ProductService {
     }
 
     async getSimilarProducts(id: number): Promise<Product[]> {
-        if (id <= 1273) {
+        if (id < 1273) {
+            console.log(id)
             const product = await this.productRepo.findOne({
                 where: { id },
                 relations: ['subCategory']
@@ -131,7 +132,7 @@ export class ProductService {
             })
         } else {
             return await this.productRepo.find({
-                relations: ['Category'],
+                relations: ['category'],
                 where: { category: { id: 1 } },
                 order: { id: 'DESC' },
                 take: 4
