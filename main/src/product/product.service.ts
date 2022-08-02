@@ -82,7 +82,12 @@ export class ProductService {
         const result = await this.productRepo.findOne({
             where: { id: id },
             relations: [
-                'allSpecifications', 'description', 'reviews', 'discounts'
+                'allSpecifications',
+                'description',
+                'reviews',
+                'discounts',
+                'category',
+                'subCategory'
             ]
         })
         if (!result) throw new NotFoundException()

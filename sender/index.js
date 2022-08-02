@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 app.post('/', async (req, res) => {
     const { phone, password } = req.body
-    const mess = validate(phone)
+    const mess = validate(phone, password)
 
     if (mess.length !== 0) return res.status(400).send(errorMessage(mess))
 
