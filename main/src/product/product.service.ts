@@ -116,18 +116,27 @@ export class ProductService {
     }
 
     async getSimilarProducts(id: number): Promise<Product[]> {
-        const product = await this.productRepo.findOne({
-            where: { id },
-            relations: ['subCategory']
-        })
-        if (!product) throw new NotFoundException()
-
-        return await this.productRepo.find({
-            relations: ['subCategory'],
-            where: { subCategory: { id: product.subCategory.id } },
-            order: { id: 'DESC' },
-            take: 4
-        })
+        if (id <= 1273) {
+            const product = await this.productRepo.findOne({
+                where: { id },
+                relations: ['subCategory']
+            })
+            if (!product) throw new NotFoundException()
+    
+            return await this.productRepo.find({
+                relations: ['subCategory'],
+                where: { subCategory: { id: product.subCategory.id } },
+                order: { id: 'DESC' },
+                take: 4
+            })
+        } else {
+            return await this.productRepo.find({
+                relations: ['Category'],
+                where: { category: { id: 1 } },
+                order: { id: 'DESC' },
+                take: 4
+            })
+        }
     }
 
     async like(id: any, req: any): Promise<void> {
