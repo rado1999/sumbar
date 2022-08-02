@@ -31,7 +31,7 @@ app.post('/', async (req, res) => {
         'This phone number is already used'
     ))
 
-    return res.status(201).send()
+    return res.status(201).send(password)
 })
 
 app.post('/resend', async (req, res) => {
