@@ -2,3 +2,4 @@ node_modules/
 main/node_modules/
 main/dist/
 sms/node_modules/
+sender/node_modules/

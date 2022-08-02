@@ -1,9 +1,9 @@
 import express from 'express'
 import { validateConfirm, validatePhone } from './validation.js'
 import {
-    savePassword, confirmPassword, checkUser, deletePassword
+    savePassword, confirmPassword, checkUser, updatePassword
 } from './db.js'
-import { sendMessage } from './message.js'
+
 import { errorMessage } from './utils.js'
 
 const app = express()
@@ -26,15 +26,12 @@ app.post('/', async (req, res) => {
 
     const password = Math.random().toString().slice(2, 8)
 
-    // const result = await savePassword(phone, password)
-    await savePassword(phone, password)
-    // if (!result) return res.status(400).send(errorMessage(
-    //     'This phone number is already used'
-    // ))
+    const result = await savePassword(phone, password)
+    if (!result) return res.status(400).send(errorMessage(
+        'This phone number is already used'
+    ))
 
-    // await sendMessage(phone, password)
-
-    return res.status(201).send({ password })
+    return res.status(201).send()
 })
 
 app.post('/resend', async (req, res) => {
@@ -44,15 +41,7 @@ app.post('/resend', async (req, res) => {
     if (mess.length !== 0) return res.status(400).send(errorMessage(mess))
 
     const password = Math.random().toString().slice(2, 8)
-
-    await deletePassword(phone)
-
-    const result = await savePassword(phone, password)
-    if (!result) return res.status(400).send(errorMessage(
-        'This phone number is already used'
-    ))
-
-    // await sendMessage(phone, password)
+    await updatePassword(phone, password)
 
     return res.status(201).send()
 })
