@@ -13,3 +13,13 @@ export function validatePhone(phone) {
 
     return ''
 }
+
+export function validate(phone, password) {
+    const mess = validatePhone(phone)
+    if (mess.length !== 0) return mess
+    else if (!password) return 'Password must not be empty'
+    else if (password.length < 6 || password.length > 6)
+        return 'Password length must be 6'
+    
+    return ''
+}

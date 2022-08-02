@@ -43,7 +43,7 @@ app.post('/resend', async (req, res) => {
     const password = Math.random().toString().slice(2, 8)
     await updatePassword(phone, password)
 
-    return res.status(201).send()
+    return res.status(201).send(password)
 })
 
 app.post('/confirm', async (req, res) => {
