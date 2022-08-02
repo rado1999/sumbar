@@ -8,7 +8,7 @@ app.use(
     )
 )
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(
         '/home/sumbar/front/build/static/css/index.html'
     )
