@@ -62,3 +62,8 @@ copy addresses (id, address, "userId")
 from '/home/sumbar/main/data/addresses.csv'
 with csv;
 SELECT setval('addresses_id_seq', 101);
+
+copy discounts (id, original_price, discount, total_price, "productId")
+from '/home/sumbar/main/data/discounts.csv'
+with csv;
+SELECT setval('discounts_id_seq', 6)

@@ -10,6 +10,7 @@ import { ProductController } from './product.controller'
 import { ProductService } from './product.service'
 import { History } from './entities/history.entity'
 import { User } from 'src/users/entities/user.entity'
+import { Discounts } from './entities/discounts.entity'
 
 @Module({
     imports: [
@@ -21,7 +22,8 @@ import { User } from 'src/users/entities/user.entity'
             ProductReviews,
             ProductLikes,
             History,
-            User
+            User,
+            Discounts
         ]
         )
     ],

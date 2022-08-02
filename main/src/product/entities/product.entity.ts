@@ -9,6 +9,7 @@ import { ProductReviews } from 'src/product/entities/product-reviews.entity'
 import {
     Column, Entity, ManyToOne, OneToMany, OneToOne,
     PrimaryGeneratedColumn } from 'typeorm'
+import { Discounts } from './discounts.entity'
 
 @Entity()
 export class Product {
@@ -67,4 +68,7 @@ export class Product {
 
     @OneToMany(() => ProductLikes, likes => likes.product)
     likes: ProductLikes
+
+    @OneToOne(() => Discounts, discounts => discounts.product)
+    discounts: Discounts
 }

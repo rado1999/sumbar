@@ -53,6 +53,17 @@ export class ProductService {
                 LIMIT $1;
             `, [1])
             count = +count[0].row_number
+        } else if (options.discounts === 'true') {
+            entities = await this.productRepo.query(`
+                SELECT product.id, "imageUrl", title, price,
+                discount, total_price
+                FROM product
+                LEFT OUTER JOIN discounts on
+                discounts."productId" = product.id
+                LIMIT $1
+                OFFSET $2
+            `, [options.take, options.skip])
+            count = await this.productRepo.count()
         } else {
             entities = await this.productRepo.find({
                 select: ['id', 'imageUrl', 'title', 'price'],
@@ -70,7 +81,9 @@ export class ProductService {
     async getProduct(id: number): Promise<Product> {
         const result = await this.productRepo.findOne({
             where: { id: id },
-            relations: ['allSpecifications', 'description', 'reviews']
+            relations: [
+                'allSpecifications', 'description', 'reviews', 'discounts'
+            ]
         })
         if (!result) throw new NotFoundException()
         return result

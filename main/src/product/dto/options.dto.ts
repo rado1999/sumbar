@@ -7,11 +7,16 @@ enum Order {
 }
 
 enum By {
-    PRICE = 'price',
-    ID = 'id'
+    ID = 'id',
+    PRICE = 'price'
 }
 
 enum Popular {
+    TRUE = 'true',
+    FALSE = 'false'
+}
+
+enum Discounts {
     TRUE = 'true',
     FALSE = 'false'
 }
@@ -41,6 +46,10 @@ export class Options {
     @IsEnum(Popular)
     @IsOptional()
     popular: Popular = Popular.FALSE
+
+    @IsEnum(Discounts)
+    @IsOptional()
+    discounts: Discounts = Discounts.FALSE
 
     get skip(): number {
         return (this.page - 1) * this.take
