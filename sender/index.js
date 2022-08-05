@@ -11,6 +11,9 @@ app.use((req, res, next) => {
         'Access-Control-Allow-Headers',
         'Origin, X-Requested-With, Content-Type, Accept'
     )
+    res.header(
+        'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE'
+    )
 
     next()
 })
@@ -25,5 +28,7 @@ app.post('/', async (req, res) => {
 
     return res.sendStatus(200)
 })
+
+app.get('/', (req, res) => res.send('Hello dude'))
 
 app.listen(3003, '192.168.31.202')
